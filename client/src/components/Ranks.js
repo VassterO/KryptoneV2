@@ -1,24 +1,27 @@
 import React, { useState } from 'react';
 import LazyLoad from 'react-lazyload';
+import vanguardiaImg from '../assets/vanguardia.png';
+import arcanoImg from '../assets/arcano.png';
+import investigadorImg from '../assets/investigador.png';
 
 const ranks = [
     {
         name: 'Vanguardia',
-        image: '/assets/vanguardia.png',
+        image: vanguardiaImg,
         description: 'Historia de Vanguardia...',
         price: '10€',
         benefits: ['Acceso anticipado', 'Soporte prioritario'],
     },
     {
         name: 'Arcano',
-        image: '/assets/arcano.png',
+        image: arcanoImg,
         description: 'Historia de Arcano...',
         price: '15€',
         benefits: ['Herramientas avanzadas de investigación', 'Publicaciones exclusivas'],
     },
     {
         name: 'Investigador',
-        image: '/assets/investigador.png',
+        image: investigadorImg,
         description: 'Historia de Investigador...',
         price: '20€',
         benefits: ['Acceso a recursos exclusivos', 'Participación en eventos especiales'],
