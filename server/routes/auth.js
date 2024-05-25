@@ -1,10 +1,8 @@
-// auth.js
-
 const express = require('express');
 const passport = require('passport');
 const { OAuth2Strategy } = require('passport-oauth');
 const request = require('request');
-const User = require('../models/User'); // Import the User model
+const User = require('../models/User');
 
 // Load environment variables
 require('dotenv').config();

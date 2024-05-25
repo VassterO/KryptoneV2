@@ -1,5 +1,3 @@
-// Navbar.js
-
 import React, { useEffect, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext'; // Adjust the path as needed
@@ -18,11 +16,13 @@ const Navbar = () => {
 
         window.addEventListener('scroll', handleScroll);
 
+        // Clean up event listener on component unmount
         return () => {
             window.removeEventListener('scroll', handleScroll);
         };
     }, []);
 
+    // Reset scroll state when location changes
     useEffect(() => {
         setIsScrolled(false);
         window.scrollTo(0, 0);  // Scroll to top when navigating to a new page
