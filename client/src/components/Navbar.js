@@ -1,30 +1,11 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import logo from '../assets/logo.png';
 
 const Navbar = () => {
-    const [isScrolled, setIsScrolled] = useState(false);
     const location = useLocation();
     const { user, isAuthenticated } = useAuth();
-
-    useEffect(() => {
-        const handleScroll = () => {
-            const scrollTop = window.scrollY;
-            setIsScrolled(scrollTop > 0);
-        };
-
-        window.addEventListener('scroll', handleScroll);
-
-        return () => {
-            window.removeEventListener('scroll', handleScroll);
-        };
-    }, []);
-
-    useEffect(() => {
-        setIsScrolled(false);
-        window.scrollTo(0, 0);
-    }, [location.pathname]);
 
     useEffect(() => {
         console.log("Navbar - Authenticated:", isAuthenticated);
@@ -40,7 +21,7 @@ const Navbar = () => {
     };
 
     return (
-        <header className={`bg-gray-900 text-white p-4 flex items-center justify-between sticky top-0 z-50 transition-all duration-300 ${isScrolled ? 'shadow-lg' : ''}`}>
+        <header className="bg-gray-900 text-white p-4 flex items-center justify-between sticky top-0 z-50">
             <div className="flex items-center">
                 <img src={logo} className="h-10" alt="Kryptone Facilities Logo" />
                 <h1 className="ml-2 font-bold">Kryptone Facilities</h1>

@@ -1,5 +1,3 @@
-// server/app.js
-
 const express = require('express');
 const session = require('express-session');
 const passport = require('passport');
@@ -7,7 +5,8 @@ const cors = require('cors');
 const mongoose = require('mongoose');
 const path = require('path');
 const authRoutes = require('./routes/auth');
-require('dotenv').config(); // Load environment variables
+
+require('dotenv').config();
 
 // Connect to MongoDB
 mongoose.connect(process.env.MONGODB_URI, {
@@ -26,17 +25,18 @@ app.use(cors({
     origin: 'https://kryptonefacilities.netlify.app', // Adjust to your client URL
     credentials: true,
 }));
-app.use(express.json()); // Parse JSON bodies
+
 app.use(session({
     secret: process.env.SESSION_SECRET,
     resave: false,
     saveUninitialized: false,
     cookie: {
-        secure: true, // Set to true if using https
+        secure: true, // true if using https
         httpOnly: true,
-        sameSite: 'none' // Allows cross-site cookie usage
+        sameSite: 'none', // Allows cross-site cookie usage
     }
 }));
+
 app.use(passport.initialize());
 app.use(passport.session());
 
