@@ -26,6 +26,11 @@ const Navbar = () => {
         window.scrollTo(0, 0);
     }, [location.pathname]);
 
+    useEffect(() => {
+        console.log("Navbar auth status:", isAuthenticated);
+        console.log("Navbar user data:", user);
+    }, [isAuthenticated, user]);
+
     const handleLogin = () => {
         window.location.href = 'https://kryptonev2.onrender.com/auth/patreon';
     };
@@ -45,11 +50,11 @@ const Navbar = () => {
                 <Link to="/ranks" className="hover:text-gray-400">Rangos</Link>
                 <Link to="/tos" className="hover:text-gray-400">Términos de Servicio</Link>
                 <Link to="/privacy" className="hover:text-gray-400">Privacidad</Link>
-                {isAuthenticated && <Link to="/profile" className="hover:text-gray-400">Profile</Link>}
+                <Link to="/profile" className="hover:text-gray-400">Profile</Link>
                 {isAuthenticated ? (
                     <div className="flex items-center space-x-2">
-                        <span>Welcome, {user.name}</span>
-                        {user.memberships && user.memberships.length > 0 && (
+                        <span>Welcome, {user?.name}</span>
+                        {user?.memberships && user.memberships.length > 0 && (
                             <span>Current Plan: {user.memberships[0].tier}</span>
                         )}
                         <button onClick={handleLogout} className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">

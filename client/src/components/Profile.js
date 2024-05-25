@@ -6,13 +6,18 @@ const Profile = () => {
     const { user, isAuthenticated } = useAuth();
 
     useEffect(() => {
+        console.log("Authentication status:", isAuthenticated);
+        console.log("User data:", user);
+
         if (isAuthenticated) {
             setProfile(user);
+        } else {
+            setProfile(null);
         }
     }, [user, isAuthenticated]);
 
     if (!profile) {
-        return <div>Loading...</div>;
+        return <div className="text-white">Loading...</div>;
     }
 
     return (

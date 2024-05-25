@@ -13,6 +13,8 @@ export const AuthProvider = ({ children }) => {
                     credentials: 'include'
                 });
                 const result = await response.json();
+                console.log("Auth check result:", result);
+
                 if (result.isAuthenticated) {
                     setIsAuthenticated(true);
                     setUser(result.user);
@@ -22,6 +24,8 @@ export const AuthProvider = ({ children }) => {
                 }
             } catch (error) {
                 console.error('Error checking authentication status:', error);
+                setIsAuthenticated(false);
+                setUser(null);
             }
         };
 
