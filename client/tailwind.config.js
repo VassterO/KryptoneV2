@@ -4,11 +4,22 @@ module.exports = {
     "./src/**/*.{js,jsx,ts,tsx}", // Adjust the paths according to your project structure
   ],
   theme: {
-    extend: {},
+    extend: {
+      animation: {
+        'fade-in': 'fadeIn 1s ease-out',
+        'spin-slow': 'spin 3s linear infinite',
+      },
+      keyframes: {
+        fadeIn: {
+          '0%': { opacity: 0 },
+          '100%': { opacity: 1 },
+        },
+      },
+    },
   },
-  darkMode: 'media', // You can also remove this line if you don't want dark mode
+  darkMode: 'media',
   plugins: [
     require('@tailwindcss/forms'),
-    require('@tailwindcss/typography')
+    require('@tailwindcss/typography'),
   ],
 };

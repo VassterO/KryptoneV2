@@ -20,29 +20,29 @@ const Navbar = () => {
     };
 
     return (
-        <header className="bg-background text-foreground p-4 flex items-center justify-between sticky top-0 z-50 shadow-md">
+        <header className="bg-gray-900 text-white p-4 flex items-center justify-between sticky top-0 z-50">
             <div className="flex items-center">
                 <img src={logo} className="h-10" alt="Kryptone Facilities Logo" />
-                <h1 className="ml-2 font-bold text-xl">Kryptone Facilities</h1>
+                <h1 className="ml-2 font-bold text-white">Kryptone Facilities</h1>
             </div>
             <nav className="flex items-center space-x-4">
-                <Link to="/" className="hover:text-accent transition-colors duration-200">Inicio</Link>
-                <Link to="/ranks" className="hover:text-accent transition-colors duration-200">Rangos</Link>
-                <Link to="/tos" className="hover:text-accent transition-colors duration-200">Términos de Servicio</Link>
-                <Link to="/privacy" className="hover:text-accent transition-colors duration-200">Privacidad</Link>
-                <Link to="/profile" className="hover:text-accent transition-colors duration-200">Profile</Link>
+                <Link to="/" className="hover:text-gray-400 text-white transition duration-300">Inicio</Link>
+                <Link to="/ranks" className="hover:text-gray-400 text-white transition duration-300">Rangos</Link>
+                <Link to="/tos" className="hover:text-gray-400 text-white transition duration-300">Términos de Servicio</Link>
+                <Link to="/privacy" className="hover:text-gray-400 text-white transition duration-300">Privacidad</Link>
+                <Link to="/profile" className="hover:text-gray-400 text-white transition duration-300">Profile</Link>
                 {isAuthenticated ? (
                     <div className="flex items-center space-x-2">
-                        <span>Welcome, {user?.name}</span>
+                        <span className="text-white">Welcome, {user?.name}</span>
                         {user?.memberships && user.memberships.length > 0 && (
-                            <span>Current Plan: {user.memberships[0].tier}</span>
+                            <span className="text-white">Current Plan: {user.memberships[0].tier}</span>
                         )}
-                        <button onClick={handleLogout} className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded transition duration-200">
+                        <button onClick={handleLogout} className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded transition transform hover:scale-105 duration-300">
                             Logout
                         </button>
                     </div>
                 ) : (
-                    <button onClick={handleLogin} className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded transition duration-200">
+                    <button onClick={handleLogin} className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded transition transform hover:scale-105 duration-300">
                         Login with Patreon
                     </button>
                 )}
