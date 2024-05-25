@@ -1,54 +1,38 @@
-// src/components/Profile.js
-
 import React, { useEffect, useState } from 'react';
 import { useAuth } from '../context/AuthContext';
 
 const Profile = () => {
-    const { user, isAuthenticated } = useAuth();
+    const { user } = useAuth();
     const [profile, setProfile] = useState(null);
 
     useEffect(() => {
-        const fetchProfile = async () => {
-            try {
-                const response = await fetch('https://kryptonev2.onrender.com/auth/user', {
-                    credentials: 'include'
-                });
-                const result = await response.json();
-                if (result.isAuthenticated) {
-                    setProfile(result.user);
-                }
-            } catch (error) {
-                console.error('Error fetching profile:', error);
-            }
-        };
-
-        fetchProfile();
+        fetch('https://kryptonev2.onrender.com/auth/user', {
+            credentials: 'include'
+        })
+            .then(response => response.json())
+            .then(data => setProfile(data.user))
+            .catch(error => console.error('Error fetching profile:', error));
     }, []);
 
-    if (!isAuthenticated) {
+    if (!profile) {
         return <div>Loading...</div>;
     }
 
-    if (!profile) {
-        return <div>Loading profile...</div>;
-    }
-
     return (
-        <div className="text-white p-4">
-            <h2 className="text-2xl font-bold">Welcome, {profile.name}</h2>
+        <div>
+            <h2>Welcome, {profile.name}</h2>
             <p>ID: {profile.id}</p>
-            {profile.memberships.length > 0 ? (
+            {profile.memberships && profile.memberships.length > 0 && (
                 <div>
-                    <h3 className="text-xl font-semibold">Memberships</h3>
-                    {profile.memberships.map((membership, index) => (
-                        <div key={index} className="p-2 border-b border-gray-700">
-                            <p>Membership ID: {membership.id}</p>
-                            <p>Tier: {membership.tier || 'Unknown Tier'}</p>
-                        </div>
-                    ))}
+                    <h3>Memberships</h3>
+                    <ul>
+                        {profile.memberships.map((membership, index) => (
+                            <li key={index}>
+                                {membership.tier || 'No Tier'} (ID: {membership.id})
+                            </li>
+                        ))}
+                    </ul>
                 </div>
-            ) : (
-                <p>No memberships</p>
             )}
         </div>
     );
