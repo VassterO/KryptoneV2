@@ -1,8 +1,10 @@
+// auth.js
+
 const express = require('express');
 const passport = require('passport');
 const { OAuth2Strategy } = require('passport-oauth');
 const request = require('request');
-const User = require('../models/User');
+const User = require('../models/User'); // Import the User model
 
 // Load environment variables
 require('dotenv').config();
@@ -52,10 +54,10 @@ const PatreonStrategy = new OAuth2Strategy({
 
             const user = {
                 id: profileData.id,
-                name: profileData.attributes.full_name, // assuming full_name is available
+                name: profileData.attributes.full_name || profileData.attributes.vanity, // Assuming full_name or vanity is available
                 memberships: memberships.map(membership => ({
                     id: membership.id,
-                    tier: membership.attributes.tier_title // assuming tier_title is available
+                    tier: membership.attributes.tier_title || membership.attributes.tier, // Assuming tier_title or tier is available
                 }))
             };
 

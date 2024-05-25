@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { useAuth } from '../context/AuthContext'; // Adjust the path as needed
+import { useAuth } from '../context/AuthContext';
 import logo from '../assets/logo.png';
 
 const Navbar = () => {
@@ -16,16 +16,14 @@ const Navbar = () => {
 
         window.addEventListener('scroll', handleScroll);
 
-        // Clean up event listener on component unmount
         return () => {
             window.removeEventListener('scroll', handleScroll);
         };
     }, []);
 
-    // Reset scroll state when location changes
     useEffect(() => {
         setIsScrolled(false);
-        window.scrollTo(0, 0);  // Scroll to top when navigating to a new page
+        window.scrollTo(0, 0);
     }, [location.pathname]);
 
     const handleLogin = () => {
@@ -49,8 +47,8 @@ const Navbar = () => {
                 <Link to="/privacy" className="hover:text-gray-400">Privacidad</Link>
                 {isAuthenticated ? (
                     <div className="flex items-center space-x-2">
-                        <span>Welcome, {user.name}</span>
-                        {user.memberships && user.memberships.length > 0 && (
+                        <span>Welcome, {user?.name || 'User'}</span>
+                        {user?.memberships && user.memberships.length > 0 && (
                             <span>Current Plan: {user.memberships[0].tier}</span>
                         )}
                         <button onClick={handleLogout} className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">
