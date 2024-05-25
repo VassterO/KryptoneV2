@@ -1,3 +1,5 @@
+// src/components/Navbar.js
+
 import React, { useEffect, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
@@ -47,10 +49,9 @@ const Navbar = () => {
                 <Link to="/privacy" className="hover:text-gray-400">Privacidad</Link>
                 {isAuthenticated ? (
                     <div className="flex items-center space-x-2">
-                        <span>Welcome, {user?.name || 'User'}</span>
-                        {user?.memberships && user.memberships.length > 0 && (
-                            <span>Current Plan: {user.memberships[0].tier}</span>
-                        )}
+                        <Link to="/profile" className="hover:text-gray-400">
+                            {user.name || 'User'} - {user.memberships.length > 0 ? user.memberships[0].tier : 'No Plan'}
+                        </Link>
                         <button onClick={handleLogout} className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">
                             Logout
                         </button>

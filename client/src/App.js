@@ -1,3 +1,5 @@
+// src/App.js
+
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes, useLocation } from 'react-router-dom';
 import Home from './components/Home';
@@ -6,6 +8,7 @@ import TOS from './components/TOS';
 import Privacy from './components/Privacy';
 import Navbar from './components/Navbar';
 import Profile from './components/Profile';
+import { AuthProvider } from './context/AuthContext';
 import './index.css'; // Ensure Tailwind CSS and custom styles are included
 import './custom-scrollbar.css'; // Import the custom scrollbar CSS
 
@@ -42,9 +45,11 @@ const App = () => {
 };
 
 const AppWrapper = () => (
-    <Router>
-        <App />
-    </Router>
+    <AuthProvider>
+        <Router>
+            <App />
+        </Router>
+    </AuthProvider>
 );
 
 export default AppWrapper;
