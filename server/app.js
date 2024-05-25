@@ -43,9 +43,9 @@ passport.deserializeUser((obj, done) => {
 });
 
 // Connect to MongoDB
-const mongoUri = process.env.MONGO_URI;
+const mongoUri = process.env.MONGODB_URI; // Changed from MONGO_URI to MONGODB_URI
 if (!mongoUri) {
-    console.error('MongoDB connection URI is not defined. Please set the MONGO_URI environment variable.');
+    console.error('MongoDB connection URI is not defined. Please set the MONGODB_URI environment variable.');
     process.exit(1);
 }
 
