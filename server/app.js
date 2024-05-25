@@ -1,14 +1,29 @@
+// app.js
+
 const express = require('express');
 const session = require('express-session');
 const passport = require('passport');
 const cors = require('cors');
 const path = require('path');
+const mongoose = require('mongoose');
+const MongoStore = require('connect-mongo');
 const authRoutes = require('./routes/auth');
 
 // Load environment variables
 require('dotenv').config();
 
 const app = express();
+
+// MongoDB connection
+const mongoURI = "mongodb+srv://kryptoneadmin:TEfWEHt5OB2Smdal@kryptone1.n6hklku.mongodb.net/?retryWrites=true&w=majority&appName=Kryptone1";
+mongoose.connect(mongoURI, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+}).then(() => {
+    console.log('Connected to MongoDB');
+}).catch(err => {
+    console.error('Error connecting to MongoDB:', err.message);
+});
 
 // Middleware setup
 app.use(cors({
@@ -19,6 +34,7 @@ app.use(session({
     secret: process.env.SESSION_SECRET,
     resave: false,
     saveUninitialized: false,
+    store: MongoStore.create({ mongoUrl: mongoURI }), // Use MongoDB for session storage
     cookie: {
         secure: true, // Set to true since using https
         httpOnly: true,

@@ -13,9 +13,10 @@ export const AuthProvider = ({ children }) => {
         const checkAuth = async () => {
             try {
                 const response = await fetch('https://kryptonev2.onrender.com/auth/user', {
-                    credentials: 'include' // Include credentials in the request
+                    credentials: 'include', // Include credentials in the request
                 });
                 const result = await response.json();
+                console.log('Auth Check Result:', result); // Debug log
                 if (result.isAuthenticated) {
                     setIsAuthenticated(true);
                     setUser(result.user);
