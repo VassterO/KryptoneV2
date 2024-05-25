@@ -15,10 +15,11 @@ require('dotenv').config();
 const app = express();
 
 // MongoDB connection
-const mongoURI = "mongodb+srv://kryptoneadmin:TEfWEHt5OB2Smdal@kryptone1.n6hklku.mongodb.net/?retryWrites=true&w=majority&appName=Kryptone1";
+const mongoURI = process.env.MONGODB_URI;
+
 mongoose.connect(mongoURI, {
     useNewUrlParser: true,
-    useUnifiedTopology: true,
+    useUnifiedTopology: true
 }).then(() => {
     console.log('Connected to MongoDB');
 }).catch(err => {
@@ -47,12 +48,17 @@ app.use(passport.session());
 // Serialize and deserialize user
 passport.serializeUser((user, done) => {
     console.log('Serializing user:', user);
-    done(null, user);
+    done(null, user._id); // Store user ID in session
 });
 
-passport.deserializeUser((obj, done) => {
-    console.log('Deserializing user:', obj);
-    done(null, obj);
+passport.deserializeUser(async (id, done) => {
+    try {
+        const user = await User.findById(id);
+        console.log('Deserializing user:', user);
+        done(null, user);
+    } catch (err) {
+        done(err, null);
+    }
 });
 
 // Use the auth routes

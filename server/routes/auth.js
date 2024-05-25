@@ -4,6 +4,7 @@ const express = require('express');
 const passport = require('passport');
 const { OAuth2Strategy } = require('passport-oauth');
 const request = require('request');
+const User = require('../models/User'); // Import the User model
 
 // Load environment variables
 require('dotenv').config();
@@ -15,7 +16,7 @@ const PatreonStrategy = new OAuth2Strategy({
         clientSecret: process.env.PATREON_CLIENT_SECRET,
         callbackURL: "https://kryptonev2.onrender.com/auth/patreon/callback" // Ensure this is correct
     },
-    function(accessToken, refreshToken, params, done) {
+    async function(accessToken, refreshToken, params, done) {
         console.log('Access Token:', accessToken);
         console.log('Refresh Token:', refreshToken);
         console.log('Params:', params);
@@ -26,7 +27,7 @@ const PatreonStrategy = new OAuth2Strategy({
                 'Authorization': `Bearer ${accessToken}`
             },
             json: true
-        }, (error, response, body) => {
+        }, async (error, response, body) => {
             console.log('Patreon API response status:', response && response.statusCode);
             console.log('Patreon API response body:', JSON.stringify(body, null, 2));
 
@@ -60,7 +61,13 @@ const PatreonStrategy = new OAuth2Strategy({
                 }))
             };
 
-            done(null, user);
+            // Save user to MongoDB
+            try {
+                const existingUser = await User.findOneAndUpdate({ id: user.id }, user, { new: true, upsert: true });
+                done(null, existingUser);
+            } catch (err) {
+                done(err, null);
+            }
         });
     }
 );
@@ -69,12 +76,17 @@ passport.use('patreon', PatreonStrategy);
 
 passport.serializeUser((user, done) => {
     console.log('Serializing user:', user);
-    done(null, user);
+    done(null, user._id); // Store user ID in session
 });
 
-passport.deserializeUser((obj, done) => {
-    console.log('Deserializing user:', obj);
-    done(null, obj);
+passport.deserializeUser(async (id, done) => {
+    try {
+        const user = await User.findById(id);
+        console.log('Deserializing user:', user);
+        done(null, user);
+    } catch (err) {
+        done(err, null);
+    }
 });
 
 const router = express.Router();
