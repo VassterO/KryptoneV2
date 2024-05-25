@@ -45,7 +45,7 @@ const Navbar = () => {
                 <Link to="/ranks" className="hover:text-gray-400">Rangos</Link>
                 <Link to="/tos" className="hover:text-gray-400">Términos de Servicio</Link>
                 <Link to="/privacy" className="hover:text-gray-400">Privacidad</Link>
-                <Link to="/profile" className="hover:text-gray-400">Profile</Link> {/* Ensure Profile link is always visible */}
+                {isAuthenticated && <Link to="/profile" className="hover:text-gray-400">Profile</Link>}
                 {isAuthenticated ? (
                     <div className="flex items-center space-x-2">
                         <span>Welcome, {user.name}</span>

@@ -3,23 +3,23 @@ import { useAuth } from '../context/AuthContext';
 
 const Profile = () => {
     const [profile, setProfile] = useState(null);
-    const { user } = useAuth();
+    const { user, isAuthenticated } = useAuth();
 
     useEffect(() => {
-        if (user) {
+        if (isAuthenticated) {
             setProfile(user);
         }
-    }, [user]);
+    }, [user, isAuthenticated]);
 
     if (!profile) {
         return <div>Loading...</div>;
     }
 
     return (
-        <div>
-            <h2>Welcome, {profile.name}</h2>
+        <div className="p-4">
+            <h2 className="text-white text-2xl">Welcome, {profile.name}</h2>
             {profile.memberships && profile.memberships.length > 0 && (
-                <p>Current Plan: {profile.memberships[0].tier}</p>
+                <p className="text-white">Current Plan: {profile.memberships[0].tier}</p>
             )}
         </div>
     );
