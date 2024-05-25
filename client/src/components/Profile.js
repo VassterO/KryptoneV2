@@ -17,8 +17,8 @@ const Profile = () => {
             {user.memberships.length > 0 ? (
                 <div>
                     <h3 className="text-xl font-semibold">Memberships</h3>
-                    {user.memberships.map(membership => (
-                        <div key={membership.id} className="p-2 border-b border-gray-700">
+                    {user.memberships.map((membership, index) => (
+                        <div key={index} className="p-2 border-b border-gray-700">
                             <p>Membership ID: {membership.id}</p>
                             <p>Tier: {membership.tier || 'Unknown Tier'}</p>
                         </div>

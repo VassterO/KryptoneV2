@@ -8,7 +8,6 @@ import TOS from './components/TOS';
 import Privacy from './components/Privacy';
 import Navbar from './components/Navbar';
 import Profile from './components/Profile';
-import { AuthProvider } from './context/AuthContext';
 import './index.css'; // Ensure Tailwind CSS and custom styles are included
 import './custom-scrollbar.css'; // Import the custom scrollbar CSS
 
@@ -45,11 +44,9 @@ const App = () => {
 };
 
 const AppWrapper = () => (
-    <AuthProvider>
-        <Router>
-            <App />
-        </Router>
-    </AuthProvider>
+    <Router>
+        <App />
+    </Router>
 );
 
 export default AppWrapper;

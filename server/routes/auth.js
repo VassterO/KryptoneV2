@@ -63,22 +63,11 @@ passport.deserializeUser(async (id, done) => {
 
 const router = express.Router();
 
-router.get('/patreon',
-    (req, res, next) => {
-        next();
-    },
-    passport.authenticate('patreon', { scope: ['identity', 'identity.memberships'] })
-);
+router.get('/patreon', passport.authenticate('patreon', { scope: ['identity', 'identity.memberships'] }));
 
-router.get('/patreon/callback',
-    (req, res, next) => {
-        next();
-    },
-    passport.authenticate('patreon', { failureRedirect: '/' }),
-    (req, res) => {
-        res.redirect('/');
-    }
-);
+router.get('/patreon/callback', passport.authenticate('patreon', { failureRedirect: '/' }), (req, res) => {
+    res.redirect('/');
+});
 
 router.get('/user', (req, res) => {
     if (req.isAuthenticated()) {
