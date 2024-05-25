@@ -4,8 +4,8 @@ const express = require('express');
 const session = require('express-session');
 const passport = require('passport');
 const cors = require('cors');
-const mongoose = require('mongoose');
 const path = require('path');
+const mongoose = require('mongoose');
 const authRoutes = require('./routes/auth');
 
 // Load environment variables
@@ -31,25 +31,31 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 
-// MongoDB connection
-mongoose.connect(process.env.MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true })
-    .then(() => console.log('Connected to MongoDB'))
-    .catch(err => console.error('Error connecting to MongoDB:', err));
-
 // Serialize and deserialize user
 passport.serializeUser((user, done) => {
     console.log('Serializing user:', user);
-    done(null, user._id); // Store user ID in session
+    done(null, user);
 });
 
-passport.deserializeUser(async (id, done) => {
-    try {
-        const user = await User.findById(id);
-        console.log('Deserializing user:', user);
-        done(null, user);
-    } catch (err) {
-        done(err, null);
-    }
+passport.deserializeUser((obj, done) => {
+    console.log('Deserializing user:', obj);
+    done(null, obj);
+});
+
+// Connect to MongoDB
+const mongoUri = process.env.MONGO_URI;
+if (!mongoUri) {
+    console.error('MongoDB connection URI is not defined. Please set the MONGO_URI environment variable.');
+    process.exit(1);
+}
+
+mongoose.connect(mongoUri, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+}).then(() => {
+    console.log('Connected to MongoDB');
+}).catch(err => {
+    console.error('Error connecting to MongoDB:', err);
 });
 
 // Use the auth routes
