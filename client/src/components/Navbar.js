@@ -1,10 +1,9 @@
 import React, { useEffect } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import logo from '../assets/logo.png';
 
 const Navbar = () => {
-    const location = useLocation();
     const { user, isAuthenticated } = useAuth();
 
     useEffect(() => {
@@ -21,17 +20,17 @@ const Navbar = () => {
     };
 
     return (
-        <header className="bg-gray-900 text-white p-4 flex items-center justify-between sticky top-0 z-50 shadow-md">
+        <header className="bg-background text-foreground p-4 flex items-center justify-between sticky top-0 z-50 shadow-md">
             <div className="flex items-center">
                 <img src={logo} className="h-10" alt="Kryptone Facilities Logo" />
                 <h1 className="ml-2 font-bold text-xl">Kryptone Facilities</h1>
             </div>
             <nav className="flex items-center space-x-4">
-                <Link to="/" className="hover:text-gray-400 transition-colors duration-200">Inicio</Link>
-                <Link to="/ranks" className="hover:text-gray-400 transition-colors duration-200">Rangos</Link>
-                <Link to="/tos" className="hover:text-gray-400 transition-colors duration-200">Términos de Servicio</Link>
-                <Link to="/privacy" className="hover:text-gray-400 transition-colors duration-200">Privacidad</Link>
-                <Link to="/profile" className="hover:text-gray-400 transition-colors duration-200">Profile</Link>
+                <Link to="/" className="hover:text-accent transition-colors duration-200">Inicio</Link>
+                <Link to="/ranks" className="hover:text-accent transition-colors duration-200">Rangos</Link>
+                <Link to="/tos" className="hover:text-accent transition-colors duration-200">Términos de Servicio</Link>
+                <Link to="/privacy" className="hover:text-accent transition-colors duration-200">Privacidad</Link>
+                <Link to="/profile" className="hover:text-accent transition-colors duration-200">Profile</Link>
                 {isAuthenticated ? (
                     <div className="flex items-center space-x-2">
                         <span>Welcome, {user?.name}</span>
