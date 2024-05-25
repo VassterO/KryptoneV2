@@ -12,11 +12,9 @@ export const AuthProvider = ({ children }) => {
         const checkAuth = async () => {
             try {
                 const response = await fetch('https://kryptonev2.onrender.com/auth/user', {
-                    credentials: 'include' // Include credentials in the request
+                    credentials: 'include'
                 });
                 const result = await response.json();
-                console.log('Auth check result:', result); // Add this line for logging
-
                 if (result.isAuthenticated) {
                     setIsAuthenticated(true);
                     setUser(result.user);
@@ -26,6 +24,8 @@ export const AuthProvider = ({ children }) => {
                 }
             } catch (error) {
                 console.error('Error checking authentication status:', error);
+                setIsAuthenticated(false);
+                setUser(null);
             }
         };
 

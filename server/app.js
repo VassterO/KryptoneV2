@@ -7,8 +7,6 @@ const cors = require('cors');
 const path = require('path');
 const mongoose = require('mongoose');
 const authRoutes = require('./routes/auth');
-
-// Load environment variables
 require('dotenv').config();
 
 const app = express();
@@ -19,15 +17,18 @@ mongoose.connect(process.env.MONGODB_URI, {
     useUnifiedTopology: true,
 })
     .then(() => console.log('Connected to MongoDB'))
-    .catch((err) => console.error('Error connecting to MongoDB:', err));
+    .catch(err => console.error('Error connecting to MongoDB:', err));
 
 // Middleware setup
 app.use(cors({
     origin: 'https://kryptonefacilities.netlify.app', // Adjust to your client URL
     credentials: true,
     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
-    allowedHeaders: 'Content-Type,Authorization'
+    preflightContinue: false,
+    optionsSuccessStatus: 204
 }));
+
+app.use(express.json());
 app.use(session({
     secret: process.env.SESSION_SECRET,
     resave: false,
@@ -43,14 +44,12 @@ app.use(passport.session());
 
 // Serialize and deserialize user
 passport.serializeUser((user, done) => {
-    console.log('Serializing user:', user);
     done(null, user._id); // Store user ID in session
 });
 
 passport.deserializeUser(async (id, done) => {
     try {
         const user = await User.findById(id);
-        console.log('Deserializing user:', user);
         done(null, user);
     } catch (err) {
         done(err, null);

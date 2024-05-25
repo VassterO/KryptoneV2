@@ -1,4 +1,4 @@
-// src/components/Navbar.js
+// Navbar.js
 
 import React, { useEffect, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
@@ -18,22 +18,15 @@ const Navbar = () => {
 
         window.addEventListener('scroll', handleScroll);
 
-        // Clean up event listener on component unmount
         return () => {
             window.removeEventListener('scroll', handleScroll);
         };
     }, []);
 
-    // Reset scroll state when location changes
     useEffect(() => {
         setIsScrolled(false);
         window.scrollTo(0, 0);  // Scroll to top when navigating to a new page
     }, [location.pathname]);
-
-    useEffect(() => {
-        console.log('Navbar - isAuthenticated:', isAuthenticated); // Add this line for logging
-        console.log('Navbar - user:', user); // Add this line for logging
-    }, [isAuthenticated, user]);
 
     const handleLogin = () => {
         window.location.href = 'https://kryptonev2.onrender.com/auth/patreon';
