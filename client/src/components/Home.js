@@ -11,7 +11,7 @@ const Home = () => {
                     Kryptone Facilities es un servidor de SCP: Secret Laboratory. Tenemos contenido para descubrir y mucho mas por venir, mantente atento.
                 </p>
                 <p className="text-xl">
-                    Explora nuestras diferentes opciones de rangos y descubre cómo puedes apoyar al servidor y obtener beneficios.
+                    Consulta los rangos en venta y que beneficios obtienes al apoyar al servidor.
                 </p>
             </div>
         </div>
