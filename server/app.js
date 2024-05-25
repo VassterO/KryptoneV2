@@ -1,3 +1,5 @@
+// app.js
+
 const express = require('express');
 const session = require('express-session');
 const passport = require('passport');
@@ -12,7 +14,7 @@ const app = express();
 
 // Middleware setup
 app.use(cors({
-    origin: 'https://kryptonefacilities.netlify.app', // Replace with your Netlify domain
+    origin: 'https://kryptonefacilities.netlify.app', // Adjust to your client URL
     credentials: true,
 }));
 app.use(session({
@@ -20,12 +22,24 @@ app.use(session({
     resave: false,
     saveUninitialized: false,
     cookie: {
-        secure: true, // Ensures the cookie is only used over HTTPS
-        httpOnly: true // Ensures the cookie is not accessible via JavaScript
+        secure: true, // Set to true since using https
+        httpOnly: true,
+        sameSite: 'none' // Allows cross-site cookie usage
     }
 }));
 app.use(passport.initialize());
 app.use(passport.session());
+
+// Serialize and deserialize user
+passport.serializeUser((user, done) => {
+    console.log('Serializing user:', user);
+    done(null, user);
+});
+
+passport.deserializeUser((obj, done) => {
+    console.log('Deserializing user:', obj);
+    done(null, obj);
+});
 
 // Use the auth routes
 app.use('/auth', authRoutes);
