@@ -1,8 +1,12 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import LazyLoad from 'react-lazyload';
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 import vanguardiaImg from '../assets/vanguardia.png';
 import arcanoImg from '../assets/arcano.png';
 import investigadorImg from '../assets/investigador.png';
+
+AOS.init();
 
 const ranks = [
     {
@@ -31,6 +35,10 @@ const ranks = [
 const Ranks = () => {
     const [expandedIndex, setExpandedIndex] = useState(null);
 
+    useEffect(() => {
+        AOS.refresh();
+    }, []);
+
     const handleExpand = (index) => {
         setExpandedIndex(expandedIndex === index ? null : index);
     };
@@ -38,17 +46,19 @@ const Ranks = () => {
     return (
         <div className="min-h-screen bg-gradient-to-b from-gray-900 via-gray-800 to-black text-white flex flex-col items-center justify-center py-8">
             <div className="w-10/12 md:w-8/12 lg:w-6/12">
-                <h2 className="text-4xl font-bold text-center mb-8">Rangos</h2>
+                <h2 className="text-4xl font-bold text-center mb-8" data-aos="fade-up">Rangos</h2>
                 {ranks.map((rank, index) => (
                     <div
                         key={index}
                         className="mb-8 p-4 bg-gray-800 bg-opacity-75 rounded-lg shadow-2xl transition duration-500"
+                        data-aos="fade-up"
+                        data-aos-delay={`${index * 100}`}
                     >
                         <button
                             onClick={() => handleExpand(index)}
                             className="w-full text-left focus:outline-none"
                         >
-                            <div className="flex items-center">
+                            <div className="flex items-center hover:bg-gray-700 transition duration-300 ease-in-out">
                                 <LazyLoad height={100} offset={100} once>
                                     <img
                                         src={rank.image}
@@ -75,7 +85,7 @@ const Ranks = () => {
                                         </li>
                                     ))}
                                 </ul>
-                                <button className="px-4 py-2 bg-blue-500 hover:bg-blue-700 text-white font-bold rounded">
+                                <button className="px-4 py-2 bg-blue-500 hover:bg-blue-700 text-white font-bold rounded transition transform hover:scale-105 duration-300">
                                     Suscribirse
                                 </button>
                             </div>

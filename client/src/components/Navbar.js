@@ -20,17 +20,17 @@ const Navbar = () => {
     };
 
     return (
-        <header className="bg-gray-900 text-white p-4 flex items-center justify-between sticky top-0 z-50">
+        <header className="bg-gray-900 text-white p-4 flex items-center justify-between sticky top-0 z-50 shadow-lg">
             <div className="flex items-center">
                 <img src={logo} className="h-10" alt="Kryptone Facilities Logo" />
                 <h1 className="ml-2 font-bold text-white">Kryptone Facilities</h1>
             </div>
             <nav className="flex items-center space-x-4">
-                <Link to="/" className="hover:text-gray-400 text-white transition duration-300">Inicio</Link>
-                <Link to="/ranks" className="hover:text-gray-400 text-white transition duration-300">Rangos</Link>
-                <Link to="/tos" className="hover:text-gray-400 text-white transition duration-300">Términos de Servicio</Link>
-                <Link to="/privacy" className="hover:text-gray-400 text-white transition duration-300">Privacidad</Link>
-                <Link to="/profile" className="hover:text-gray-400 text-white transition duration-300">Profile</Link>
+                <Link to="/" className="hover:text-gray-400 transition duration-300 ease-in-out transform hover:scale-105">Inicio</Link>
+                <Link to="/ranks" className="hover:text-gray-400 transition duration-300 ease-in-out transform hover:scale-105">Rangos</Link>
+                <Link to="/tos" className="hover:text-gray-400 transition duration-300 ease-in-out transform hover:scale-105">Términos de Servicio</Link>
+                <Link to="/privacy" className="hover:text-gray-400 transition duration-300 ease-in-out transform hover:scale-105">Privacidad</Link>
+                <Link to="/profile" className="hover:text-gray-400 transition duration-300 ease-in-out transform hover:scale-105">Profile</Link>
                 {isAuthenticated ? (
                     <div className="flex items-center space-x-2">
                         <span className="text-white">Welcome, {user?.name}</span>
