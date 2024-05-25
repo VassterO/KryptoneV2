@@ -2,9 +2,7 @@
 ## Distribution/Leaks of those files will result in a permament blacklist of the project
 ### Welcome to the Kryptone Website V2 Repository, here is the entire project of the Kryptone Website which includes sensitive data
 **Currently Working on**
-> Netlify Compatibility
-
-> Render Compatibility
+> Rank Price | Description | Benefits
 
 > Patreon OAuth
 
