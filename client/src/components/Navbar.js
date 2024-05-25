@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { useAuth } from '../context/AuthContext';
+import { useAuth } from '../context/AuthContext'; // Adjust the path as needed
 import logo from '../assets/logo.png';
 
 const Navbar = () => {
@@ -45,11 +45,13 @@ const Navbar = () => {
                 <Link to="/ranks" className="hover:text-gray-400">Rangos</Link>
                 <Link to="/tos" className="hover:text-gray-400">Términos de Servicio</Link>
                 <Link to="/privacy" className="hover:text-gray-400">Privacidad</Link>
+                <Link to="/profile" className="hover:text-gray-400">Profile</Link> {/* Ensure Profile link is always visible */}
                 {isAuthenticated ? (
                     <div className="flex items-center space-x-2">
-                        <Link to="/profile" className="hover:text-gray-400">
-                            {user.name || 'User'} - {user.memberships.length > 0 ? user.memberships[0].tier : 'No Plan'}
-                        </Link>
+                        <span>Welcome, {user.name}</span>
+                        {user.memberships && user.memberships.length > 0 && (
+                            <span>Current Plan: {user.memberships[0].tier}</span>
+                        )}
                         <button onClick={handleLogout} className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">
                             Logout
                         </button>
