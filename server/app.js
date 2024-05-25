@@ -1,4 +1,4 @@
-// app.js
+// server/app.js
 
 const express = require('express');
 const session = require('express-session');
@@ -12,6 +12,16 @@ const authRoutes = require('./routes/auth');
 require('dotenv').config();
 
 const app = express();
+
+// Connect to MongoDB
+mongoose.connect(process.env.MONGODB_URI, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true
+}).then(() => {
+    console.log('Connected to MongoDB');
+}).catch((error) => {
+    console.error('Error connecting to MongoDB:', error);
+});
 
 // Middleware setup
 app.use(cors({
@@ -30,33 +40,6 @@ app.use(session({
 }));
 app.use(passport.initialize());
 app.use(passport.session());
-
-// Serialize and deserialize user
-passport.serializeUser((user, done) => {
-    console.log('Serializing user:', user);
-    done(null, user);
-});
-
-passport.deserializeUser((obj, done) => {
-    console.log('Deserializing user:', obj);
-    done(null, obj);
-});
-
-// Connect to MongoDB
-const mongoUri = process.env.MONGODB_URI; // Changed from MONGO_URI to MONGODB_URI
-if (!mongoUri) {
-    console.error('MongoDB connection URI is not defined. Please set the MONGODB_URI environment variable.');
-    process.exit(1);
-}
-
-mongoose.connect(mongoUri, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-}).then(() => {
-    console.log('Connected to MongoDB');
-}).catch(err => {
-    console.error('Error connecting to MongoDB:', err);
-});
 
 // Use the auth routes
 app.use('/auth', authRoutes);
