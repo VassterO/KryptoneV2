@@ -2,12 +2,12 @@ import React, { useEffect, useState } from 'react';
 import { useAuth } from '../context/AuthContext';
 
 const Profile = () => {
-    const [profile, setProfile] = useState(null);
     const { user, isAuthenticated } = useAuth();
+    const [profile, setProfile] = useState(null);
 
     useEffect(() => {
-        console.log("Authentication status:", isAuthenticated);
-        console.log("User data:", user);
+        console.log("Profile - Authenticated:", isAuthenticated);
+        console.log("Profile - User data:", user);
 
         if (isAuthenticated) {
             setProfile(user);

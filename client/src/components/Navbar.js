@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { useAuth } from '../context/AuthContext'; // Adjust the path as needed
+import { useAuth } from '../context/AuthContext';
 import logo from '../assets/logo.png';
 
 const Navbar = () => {
@@ -27,8 +27,8 @@ const Navbar = () => {
     }, [location.pathname]);
 
     useEffect(() => {
-        console.log("Navbar auth status:", isAuthenticated);
-        console.log("Navbar user data:", user);
+        console.log("Navbar - Authenticated:", isAuthenticated);
+        console.log("Navbar - User data:", user);
     }, [isAuthenticated, user]);
 
     const handleLogin = () => {
