@@ -1,4 +1,4 @@
-// AuthContext.js
+// src/context/AuthContext.js
 
 import React, { createContext, useContext, useState, useEffect } from 'react';
 
@@ -9,13 +9,14 @@ export const AuthProvider = ({ children }) => {
     const [isAuthenticated, setIsAuthenticated] = useState(false);
 
     useEffect(() => {
-        // Check if the user is authenticated and fetch user data
         const checkAuth = async () => {
             try {
                 const response = await fetch('https://kryptonev2.onrender.com/auth/user', {
                     credentials: 'include' // Include credentials in the request
                 });
                 const result = await response.json();
+                console.log('Auth check result:', result); // Add this line for logging
+
                 if (result.isAuthenticated) {
                     setIsAuthenticated(true);
                     setUser(result.user);

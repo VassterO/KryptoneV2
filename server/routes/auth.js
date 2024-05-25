@@ -1,4 +1,4 @@
-// server/routes/auth.js
+// auth.js
 
 const express = require('express');
 const passport = require('passport');
@@ -69,7 +69,8 @@ const PatreonStrategy = new OAuth2Strategy({
                 done(err, null);
             }
         });
-    });
+    }
+);
 
 passport.use('patreon', PatreonStrategy);
 
