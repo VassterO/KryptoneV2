@@ -8,22 +8,22 @@ const ranks = [
     {
         name: 'Vanguardia',
         image: vanguardiaImg,
-        description: 'Historia de Vanguardia...',
-        price: '10€',
+        description: 'Placeholder',
+        price: 'Por determinar',
         benefits: ['Acceso anticipado', 'Soporte prioritario'],
     },
     {
         name: 'Arcano',
         image: arcanoImg,
-        description: 'Historia de Arcano...',
-        price: '15€',
+        description: 'Placeholder',
+        price: 'Por determinar',
         benefits: ['Herramientas avanzadas de investigación', 'Publicaciones exclusivas'],
     },
     {
         name: 'Investigador',
         image: investigadorImg,
-        description: 'Historia de Investigador...',
-        price: '20€',
+        description: 'Placeholder',
+        price: 'Por determinar',
         benefits: ['Acceso a recursos exclusivos', 'Participación en eventos especiales'],
     },
 ];

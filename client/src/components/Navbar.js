@@ -1,28 +1,25 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import logo from '../assets/logo.png'; // Adjust the path if needed
+import LoginButton from './LoginButton';
+import LogoutButton from './LogoutButton';
+import logo from '../assets/logo.png';
 
 const Navbar = () => {
     return (
-        <nav className="bg-gray-800 bg-opacity-75 p-4 shadow-md fixed w-full z-10">
-            <div className="container mx-auto flex justify-between items-center">
-                <div className="flex items-center">
-                    <img src={logo} alt="Logo" className="h-8 w-8 mr-2"/>
-                    <div className="text-white text-2xl font-bold">
-                        Kryptone Facilities
-                    </div>
-                </div>
-                <div className="hidden md:flex space-x-4">
-                    <Link to="/" className="text-gray-300 hover:text-white transition duration-300">Inicio</Link>
-                    <Link to="/ranks" className="text-gray-300 hover:text-white transition duration-300">Rangos</Link>
-                    <Link to="/tos" className="text-gray-300 hover:text-white transition duration-300">Términos de Servicio</Link>
-                    <Link to="/privacy" className="text-gray-300 hover:text-white transition duration-300">Privacidad</Link>
-                </div>
-                <div className="md:flex items-center space-x-4">
-                    <Link to="/login" className="text-gray-300 hover:text-white transition duration-300">Login with Patreon</Link>
-                </div>
+        <header className="bg-gray-900 text-white p-4 flex items-center justify-between sticky top-0 z-50">
+            <div className="flex items-center">
+                <img src={logo} className="h-10" alt="Kryptone Facilities Logo" />
+                <h1 className="ml-2 font-bold">Kryptone Facilities</h1>
             </div>
-        </nav>
+            <nav className="flex items-center space-x-4">
+                <Link to="/" className="hover:text-gray-400">Inicio</Link>
+                <Link to="/ranks" className="hover:text-gray-400">Rangos</Link>
+                <Link to="/tos" className="hover:text-gray-400">Términos de Servicio</Link>
+                <Link to="/privacy" className="hover:text-gray-400">Privacidad</Link>
+                <LoginButton />
+                <LogoutButton />
+            </nav>
+        </header>
     );
 };
 
