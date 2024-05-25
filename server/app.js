@@ -4,27 +4,14 @@ const express = require('express');
 const session = require('express-session');
 const passport = require('passport');
 const cors = require('cors');
-const path = require('path');
 const mongoose = require('mongoose');
-const MongoStore = require('connect-mongo');
+const path = require('path');
 const authRoutes = require('./routes/auth');
 
 // Load environment variables
 require('dotenv').config();
 
 const app = express();
-
-// MongoDB connection
-const mongoURI = process.env.MONGODB_URI;
-
-mongoose.connect(mongoURI, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true
-}).then(() => {
-    console.log('Connected to MongoDB');
-}).catch(err => {
-    console.error('Error connecting to MongoDB:', err.message);
-});
 
 // Middleware setup
 app.use(cors({
@@ -35,7 +22,6 @@ app.use(session({
     secret: process.env.SESSION_SECRET,
     resave: false,
     saveUninitialized: false,
-    store: MongoStore.create({ mongoUrl: mongoURI }), // Use MongoDB for session storage
     cookie: {
         secure: true, // Set to true since using https
         httpOnly: true,
@@ -44,6 +30,11 @@ app.use(session({
 }));
 app.use(passport.initialize());
 app.use(passport.session());
+
+// MongoDB connection
+mongoose.connect(process.env.MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true })
+    .then(() => console.log('Connected to MongoDB'))
+    .catch(err => console.error('Error connecting to MongoDB:', err));
 
 // Serialize and deserialize user
 passport.serializeUser((user, done) => {
