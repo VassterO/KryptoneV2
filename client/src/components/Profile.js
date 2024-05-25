@@ -1,6 +1,6 @@
 // src/components/Profile.js
 
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useAuth } from '../context/AuthContext';
 
 const Profile = () => {
