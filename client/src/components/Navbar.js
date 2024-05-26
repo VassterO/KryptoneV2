@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import logo from '../assets/logo.png';
@@ -6,12 +6,6 @@ import logo from '../assets/logo.png';
 // Componente Navbar que muestra la barra de navegación superior
 const Navbar = () => {
     const { user, isAuthenticated } = useAuth();
-
-    useEffect(() => {
-        // Imprimimos en la consola si el usuario está autenticado y sus datos
-        console.log("Navbar - Authenticated:", isAuthenticated);
-        console.log("Navbar - User data:", user);
-    }, [isAuthenticated, user]);
 
     // Función para manejar el inicio de sesión
     const handleLogin = () => {
