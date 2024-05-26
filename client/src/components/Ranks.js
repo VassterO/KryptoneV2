@@ -55,10 +55,12 @@ const Ranks = () => {
             >
                 <h2 className="text-4xl font-bold mb-8 text-center">Rangos</h2>
                 {ranks.map((rank, index) => (
-                    <div
+                    <motion.div
                         key={index}
-                        className="mb-8 p-4 bg-gray-800 bg-opacity-75 rounded-lg shadow-2xl transition duration-500"
-                        data-aos="fade-in"
+                        className="mb-8 p-4 bg-gray-800 bg-opacity-75 rounded-lg shadow-2xl"
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        transition={{ duration: 0.5 }}
                     >
                         <button
                             onClick={() => handleExpand(index)}
@@ -73,9 +75,11 @@ const Ranks = () => {
                                 <h3 className="text-2xl font-bold">{rank.name}</h3>
                             </div>
                         </button>
-                        <div
-                            className={`overflow-hidden transition-all ease-in-out duration-500 ${expandedIndex === index ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'}`}
-                            style={{ transitionProperty: 'max-height, opacity' }}
+                        <motion.div
+                            initial={{ height: 0, opacity: 0 }}
+                            animate={expandedIndex === index ? { height: 'auto', opacity: 1 } : { height: 0, opacity: 0 }}
+                            transition={{ duration: 0.5, ease: 'easeInOut' }}
+                            className="overflow-hidden"
                         >
                             <div className="mt-4 p-2">
                                 <p className="text-lg mb-2">{rank.description}</p>
@@ -89,8 +93,8 @@ const Ranks = () => {
                                     Suscribirse
                                 </button>
                             </div>
-                        </div>
-                    </div>
+                        </motion.div>
+                    </motion.div>
                 ))}
             </motion.div>
         </div>
