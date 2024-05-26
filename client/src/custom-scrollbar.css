@@ -1,19 +1,19 @@
-/* custom-scrollbar.css */
+/* Estilos personalizados para la barra de desplazamiento */
 
 *::-webkit-scrollbar {
     width: 10px;
 }
 
 *::-webkit-scrollbar-track {
-    background: #1f2937; /* Adjust this color to match your background */
+    background: #1f2937; /* Ajusta este color para que coincida con tu fondo */
 }
 
 *::-webkit-scrollbar-thumb {
-    background-color: #4a5568; /* Adjust this color to your preference */
+    background-color: #4a5568; /* Ajusta este color a tu preferencia */
     border-radius: 10px;
-    border: 2px solid #1f2937; /* Adjust this color to match your background */
+    border: 2px solid #1f2937; /* Ajusta este color para que coincida con tu fondo */
 }
 
 *::-webkit-scrollbar-thumb:hover {
-    background-color: #2d3748; /* Darker shade for hover effect */
+    background-color: #2d3748; /* Sombra más oscura para el efecto hover */
 }

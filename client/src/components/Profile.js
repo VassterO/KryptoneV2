@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useAuth } from '../context/AuthContext';
+import { motion } from 'framer-motion';
+import StarBackground from '../components/StarBackground'; // Adjust the path as needed
 
 const Profile = () => {
     const { user, isAuthenticated } = useAuth();
@@ -18,19 +20,33 @@ const Profile = () => {
 
     if (!profile) {
         return (
-            <div className="flex items-center justify-center min-h-screen">
-                <div className="animate-spin-slow rounded-full h-32 w-32 border-t-2 border-b-2 border-blue-500"></div>
+            <div className="min-h-screen flex items-center justify-center bg-gray-900 text-white relative overflow-hidden">
+                <div className="absolute w-full h-full bg-gray-900"></div>
+                <StarBackground />
+                <div className="flex flex-col items-center space-y-2 relative z-20">
+                    <div className="animate-spin-slow rounded-full h-16 w-16 border-t-4 border-b-4 border-blue-500"></div>
+                    <span>Loading...</span>
+                </div>
             </div>
         );
     }
 
     return (
-        <div className="p-4" data-aos="fade-in">
-            <h2 className="text-white text-2xl">Welcome, {profile.name}</h2>
-            {profile.memberships && profile.memberships.length > 0 && (
-                <p className="text-white">Current Plan: {profile.memberships[0].tier}</p>
-            )}
-        </div>
+        <motion.div
+            className="min-h-screen bg-gray-900 text-white flex flex-col items-center justify-center p-4 relative overflow-auto"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 1 }}
+        >
+            <div className="absolute w-full h-full bg-gray-900"></div>
+            <StarBackground />
+            <div className="relative z-20">
+                <h2 className="text-2xl font-bold">Welcome, {profile.name}</h2>
+                {profile.memberships && profile.memberships.length > 0 && (
+                    <p className="text-xl">Current Plan: {profile.memberships[0].tier}</p>
+                )}
+            </div>
+        </motion.div>
     );
 };
 

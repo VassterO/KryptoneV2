@@ -1,3 +1,5 @@
+// NO ELIMINAR, ROMPE LA PAGINA
+
 import React, { createContext, useContext, useState, useEffect } from 'react';
 
 const AuthContext = createContext();

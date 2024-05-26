@@ -1,8 +1,0 @@
-services:
-  - type: web
-    name: kryptone-backend
-    env: node
-    plan: free
-    buildCommand: 'cd .. && cd client && npm install && npm run build && cd ../server && npm install'
-    startCommand: 'node app.js'
-    autoDeploy: true
