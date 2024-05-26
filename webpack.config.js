@@ -17,7 +17,7 @@ module.exports = {
     // Configuración de salida
     output: {
         filename: isProduction ? 'bundle.[contenthash].js' : 'bundle.js',
-        path: path.resolve(__dirname, 'dist'),
+        path: path.resolve(__dirname, 'build'),
         publicPath: '/',
     },
 
@@ -127,7 +127,7 @@ module.exports = {
 
     // Configuración de DevServer para modo desarrollo
     devServer: {
-        contentBase: path.resolve(__dirname, 'dist'),
+        contentBase: path.resolve(__dirname, 'build'),
         historyApiFallback: true,
         open: true,
         compress: true,
