@@ -70,7 +70,8 @@ const Ranks = () => {
                                 <img
                                     src={rank.image}
                                     alt={rank.name}
-                                    className="w-24 h-24 rounded-lg mr-4 transition duration-500 transform hover:scale-105"
+                                    className="w-24 h-24 rounded-lg mr-4 transition duration-500 transform hover:scale-105 lazyload"
+                                    loading="lazy" // Lazy loading attribute
                                 />
                                 <h3 className="text-2xl font-bold">{rank.name}</h3>
                             </div>

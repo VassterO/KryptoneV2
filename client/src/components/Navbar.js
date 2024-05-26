@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import logo from '../assets/logo.png';
@@ -6,6 +6,7 @@ import logo from '../assets/logo.png';
 // Componente Navbar que muestra la barra de navegación superior
 const Navbar = () => {
     const { user, isAuthenticated } = useAuth();
+    const [isOpen, setIsOpen] = useState(false);
 
     // Función para manejar el inicio de sesión
     const handleLogin = () => {
@@ -24,7 +25,15 @@ const Navbar = () => {
                 <img src={logo} className="h-10" alt="Kryptone Facilities Logo" />
                 <h1 className="ml-2 font-bold">Kryptone Facilities</h1>
             </div>
-            <nav className="flex items-center space-x-4">
+            <button
+                className="block lg:hidden p-2 rounded-md text-gray-500 hover:text-white focus:outline-none"
+                onClick={() => setIsOpen(!isOpen)}
+            >
+                <svg className="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d={isOpen ? "M6 18L18 6M6 6l12 12" : "M4 6h16M4 12h16m-7 6h7"} />
+                </svg>
+            </button>
+            <nav className={`lg:flex items-center space-x-4 ${isOpen ? 'block' : 'hidden'}`}>
                 {/* Enlaces de navegación */}
                 <Link to="/" className="hover:text-gray-400">Inicio</Link>
                 <Link to="/ranks" className="hover:text-gray-400">Rangos</Link>
