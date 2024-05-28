@@ -45,6 +45,10 @@ const Ranks = () => {
 
     return (
         <div className="relative min-h-screen bg-gradient-to-b from-gray-900 via-gray-800 to-black text-white flex flex-col items-center justify-center py-8">
+            <Helmet>
+                <title>Rangos | Kryptone Facilities</title>
+                <meta name="description" content="Consulta los rangos disponibles en Kryptone Facilities" />
+            </Helmet>
             {/* Fondo animado con estrellas */}
             <StarBackground />
             <motion.div

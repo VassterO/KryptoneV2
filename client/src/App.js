@@ -9,6 +9,7 @@ import Navbar from './components/Navbar';
 import Profile from './components/Profile';
 import './index.css';
 import './custom-scrollbar.css';
+import { Helmet } from 'react-helmet';
 
 // Este componente envuelve cada página con una animación de transición
 const PageWrapper = ({ children, noScroll }) => (
@@ -34,6 +35,10 @@ const App = () => {
 
     return (
         <div className="bg-gray-900 min-h-screen flex flex-col">
+            <Helmet>
+                <title>Kryptone Facilities</title>
+                <meta name="description" content="Kryptone Facilities - SCP: Secret Laboratory Server" />
+            </Helmet>
             {/* Barra de navegación */}
             <Navbar />
             <AnimatePresence mode="wait">

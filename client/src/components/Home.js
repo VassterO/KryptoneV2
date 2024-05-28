@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { motion } from 'framer-motion';
 import StarBackground from './StarBackground';
+import { Helmet } from 'react-helmet';
 
 // Este componente representa la página principal de nuestra aplicación
 const Home = () => {
@@ -15,6 +16,10 @@ const Home = () => {
 
     return (
         <div className="relative min-h-screen bg-gradient-to-b from-gray-900 via-gray-800 to-black text-white flex flex-col items-center justify-center py-8">
+            <Helmet>
+                <title>Home | Kryptone Facilities</title>
+                <meta name="description" content="Bienvenido a la pagina oficial de Kryptone Facilities" />
+            </Helmet>
             {/* Fondo animado con estrellas */}
             <StarBackground />
             <motion.div
