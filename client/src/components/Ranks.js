@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
+import { Helmet } from 'react-helmet';
 import StarBackground from './StarBackground';
 import vanguardia from '../assets/vanguardia.png';
 import arcano from '../assets/arcano.png';
