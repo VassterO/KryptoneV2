@@ -64,3 +64,31 @@ html {
         opacity: 0;
     }
 }
+
+/* Ajustes adicionales para dispositivos móviles */
+@media (max-width: 768px) {
+    .star {
+        width: 6px;
+        height: 6px;
+    }
+
+    .star::before {
+        width: 400%;
+        height: 4px;
+    }
+}
+
+/* Estilos adicionales para la barra de navegación en móviles */
+.header {
+    background: linear-gradient(to bottom, #1a202c, #2d3748);
+}
+
+nav a {
+    padding: 8px 16px;
+}
+
+button {
+    padding: 8px;
+    border: none;
+    background: none;
+}
