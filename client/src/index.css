@@ -1,4 +1,4 @@
-@import './custom-scrollbar.css'; /* Importa los estilos personalizados para la barra de desplazamiento */
+@import './custom-scrollbar.css'; /* Import custom scrollbar styles */
 @import 'tailwindcss/base';
 @import 'tailwindcss/components';
 @import 'tailwindcss/utilities';
@@ -6,32 +6,22 @@
 body {
     margin: 0;
     padding: 0;
-    overflow-x: hidden; /* Previene el desplazamiento horizontal */
+    overflow-x: hidden; /* Prevent horizontal scrolling */
 }
 
 html, body, #root {
     height: 100%;
 }
 
-.hide-scrollbar {
-    overflow: hidden;
-    -ms-overflow-style: none;  /* IE 10+ */
-    scrollbar-width: none;  /* Firefox */
-}
-
-.hide-scrollbar::-webkit-scrollbar {
-    display: none;  /* Safari y Chrome */
-}
-
 html {
     scroll-behavior: smooth;
 }
 
-/* Estilos para las estrellas animadas */
+/* Styles for animated stars */
 .star {
     position: absolute;
     background: white;
-    box-shadow: 0 0 10px white; /* Aumentar sombra para más brillo */
+    box-shadow: 0 0 10px white; /* Increase shadow for more glow */
     border-radius: 50%;
     transform: translate(-50%, -50%);
     opacity: 0;
@@ -44,8 +34,8 @@ html {
     position: absolute;
     top: 50%;
     left: 50%;
-    width: 300%; /* Tamaño ajustado para mayor longitud del rastro */
-    height: 3px; /* Grosor del rastro */
+    width: 300%; /* Adjust size for longer trail */
+    height: 3px; /* Trail thickness */
     background: white;
     border-radius: 3px;
     transform: translate(-50%, -50%) rotate(45deg);
@@ -65,7 +55,25 @@ html {
     }
 }
 
-/* Ajustes adicionales para dispositivos móviles */
+/* Hide scrollbar for desktop */
+.hide-scrollbar {
+    overflow: hidden;
+}
+
+/* Show scrollbar for mobile and tablet */
+@media (max-width: 1024px) {
+    .hide-scrollbar {
+        overflow: auto;
+        -ms-overflow-style: auto;  /* IE 10+ */
+        scrollbar-width: auto;  /* Firefox */
+    }
+
+    .hide-scrollbar::-webkit-scrollbar {
+        display: block;  /* Safari and Chrome */
+    }
+}
+
+/* Additional adjustments for mobile devices */
 @media (max-width: 768px) {
     .star {
         width: 6px;
@@ -78,7 +86,7 @@ html {
     }
 }
 
-/* Estilos adicionales para la barra de navegación en móviles */
+/* Additional styles for the navigation bar on mobile */
 .header {
     background: linear-gradient(to bottom, #1a202c, #2d3748);
 }

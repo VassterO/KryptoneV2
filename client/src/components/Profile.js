@@ -1,30 +1,35 @@
 import React, { useEffect } from 'react';
-import StarBackground from '../components/StarBackground'; // Ajusta la ruta según sea necesario
+import { motion } from 'framer-motion';
+import StarBackground from '../components/StarBackground'; // Adjust the path as needed
 
 const Profile = () => {
-    const isAuthenticated = true; // Estado de autenticación simulado
-
     useEffect(() => {
-        console.log("Profile - Autenticado:", isAuthenticated);
+        const deviceType = /Mobi|Android/i.test(navigator.userAgent) ? 'mobile' : 'desktop';
 
-        if (isAuthenticated) {
-            // Aquí simulamos la carga de datos del usuario
-            setTimeout(() => {
-                // Mantengo el perfil en null para que el estado de carga sea infinito
-            }, 1000);
+        if (deviceType === 'desktop') {
+            document.body.classList.add('hide-scrollbar');
         }
-    }, [isAuthenticated]);
+
+        return () => {
+            if (deviceType === 'desktop') {
+                document.body.classList.remove('hide-scrollbar');
+            }
+        };
+    }, []);
 
     return (
-        <div className="min-h-screen flex items-center justify-center bg-gray-900 text-white relative overflow-hidden">
+        <motion.div
+            className="min-h-screen bg-gray-900 text-white flex flex-col items-center justify-center p-4 relative overflow-auto"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 1 }}
+        >
             <div className="absolute w-full h-full bg-gray-900"></div>
-            {/* Aquí añado el fondo animado con estrellas */}
             <StarBackground />
-            <div className="flex flex-col items-center space-y-2 relative z-20">
-                {/* Este es el spinner de carga */}
+            <div className="relative z-20">
                 <div className="animate-spin-slow rounded-full h-16 w-16 border-t-4 border-b-4 border-blue-500"></div>
             </div>
-        </div>
+        </motion.div>
     );
 };
 

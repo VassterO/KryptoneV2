@@ -1,5 +1,17 @@
 import React, { useEffect, useState } from 'react';
 
+// Función para detectar el agente de usuario y determinar el tipo de dispositivo
+const getDeviceType = () => {
+    const ua = navigator.userAgent;
+    if (/tablet|ipad|playbook|silk/i.test(ua) && !/mobi|android/i.test(ua)) {
+        return 'tablet';
+    }
+    if (/Mobile|Android|iP(hone|od)|IEMobile|WPDesktop|Fennec|Windows Phone/i.test(ua)) {
+        return 'mobile';
+    }
+    return 'desktop';
+};
+
 // Función para generar una estrella con animación
 const generateStar = (index, sizeFactor) => {
     const speed = 4 + Math.random() * 2; // Velocidad entre 4s y 6s
@@ -29,7 +41,11 @@ const StarBackground = () => {
     const [stars, setStars] = useState([]);
 
     useEffect(() => {
-        const sizeFactor = window.innerWidth >= 2560 ? 1 : window.innerWidth / 2560;
+        const deviceType = getDeviceType();
+        let sizeFactor = 1;
+        if (deviceType === 'mobile') sizeFactor = 0.5;
+        if (deviceType === 'tablet') sizeFactor = 0.75;
+
         const numStars = Math.floor((window.innerWidth * window.innerHeight) / (2560 * 1440) * 50); // Ajustar cantidad basado en la resolución
 
         // Genera las estrellas iniciales
