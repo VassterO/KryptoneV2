@@ -1,22 +1,24 @@
 import React, { useEffect, useState } from 'react';
-import { useAuth } from '../context/AuthContext';
 import { motion } from 'framer-motion';
 import StarBackground from '../components/StarBackground'; // Adjust the path as needed
 
 const Profile = () => {
-    const { user, isAuthenticated } = useAuth();
-    const [profile, setProfile] = useState(null);
+    const [profile, setProfile] = useState({
+        name: "John Doe",
+        memberships: [{ tier: "Premium" }]
+    });
+    const isAuthenticated = true; // Mock authentication status
 
     useEffect(() => {
         console.log("Profile - Authenticated:", isAuthenticated);
-        console.log("Profile - User data:", user);
+        console.log("Profile - User data:", profile);
 
         if (isAuthenticated) {
-            setProfile(user);
+            setProfile(profile);
         } else {
             setProfile(null);
         }
-    }, [user, isAuthenticated]);
+    }, [profile, isAuthenticated]);
 
     if (!profile) {
         return (
