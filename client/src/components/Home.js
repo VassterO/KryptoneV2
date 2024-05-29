@@ -19,6 +19,8 @@ const Home = () => {
             <Helmet>
                 <title>Home | Kryptone Facilities</title>
                 <meta name="description" content="Bienvenido a la pagina oficial de Kryptone Facilities" />
+                <meta name="keywords" content="Kryptone Facilities, SCP Secret Laboratory, Servidor SCP, Comunidad SCP" />
+                <meta name="author" content="Kryptone Facilities" />
             </Helmet>
             {/* Fondo animado con estrellas */}
             <StarBackground />

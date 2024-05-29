@@ -11,21 +11,21 @@ const ranks = [
     {
         name: 'Vanguardia',
         image: vanguardia,
-        description: 'Placeholder',
+        description: 'Acceso anticipado y soporte prioritario para usuarios que eligen el rango Vanguardia.',
         price: 'Por determinar',
         benefits: ['Acceso anticipado', 'Soporte prioritario'],
     },
     {
         name: 'Arcano',
         image: arcano,
-        description: 'Placeholder',
+        description: 'Herramientas avanzadas y publicaciones exclusivas para usuarios que eligen el rango Arcano.',
         price: 'Por determinar',
         benefits: ['Herramientas avanzadas de investigación', 'Publicaciones exclusivas'],
     },
     {
         name: 'Investigador',
         image: investigador,
-        description: 'Placeholder',
+        description: 'Recursos exclusivos y participación en eventos especiales para usuarios que eligen el rango Investigador.',
         price: 'Por determinar',
         benefits: ['Acceso a recursos exclusivos', 'Participación en eventos especiales'],
     },
@@ -48,7 +48,8 @@ const Ranks = () => {
         <div className="relative min-h-screen bg-gradient-to-b from-gray-900 via-gray-800 to-black text-white flex flex-col items-center justify-center py-8">
             <Helmet>
                 <title>Rangos | Kryptone Facilities</title>
-                <meta name="description" content="Consulta los rangos disponibles en Kryptone Facilities" />
+                <meta name="description" content="Consulta los rangos disponibles en Kryptone Facilities, incluyendo Vanguardia, Arcano e Investigador, y sus beneficios exclusivos." />
+                <meta name="keywords" content="Kryptone Facilities, rangos, Vanguardia, Arcano, Investigador, beneficios, SCP Secret Laboratory" />
             </Helmet>
             {/* Fondo animado con estrellas */}
             <StarBackground />
@@ -58,7 +59,7 @@ const Ranks = () => {
                 animate={{ opacity: 1 }}
                 transition={{ duration: 1 }}
             >
-                <h2 className="text-4xl font-bold mb-8 text-center">Rangos</h2>
+                <h1 className="text-4xl font-bold mb-8 text-center">Rangos Disponibles</h1>
                 {ranks.map((rank, index) => (
                     <motion.div
                         key={index}
@@ -78,7 +79,7 @@ const Ranks = () => {
                                     className="w-24 h-24 rounded-lg mr-4 transition duration-500 transform hover:scale-105 lazyload"
                                     loading="lazy" // Lazy loading attribute
                                 />
-                                <h3 className="text-2xl font-bold">{rank.name}</h3>
+                                <h2 className="text-2xl font-bold">{rank.name}</h2>
                             </div>
                         </button>
                         <motion.div

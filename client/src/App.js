@@ -3,8 +3,6 @@ import { BrowserRouter as Router, Route, Routes, useLocation } from 'react-route
 import { AnimatePresence, motion } from 'framer-motion';
 import Home from './components/Home';
 import Ranks from './components/Ranks';
-import TOS from './components/TOS';
-import Privacy from './components/Privacy';
 import Navbar from './components/Navbar';
 import Profile from './components/Profile';
 import './index.css';
@@ -45,8 +43,6 @@ const App = () => {
                 <Routes location={location} key={location.pathname}>
                     <Route path="/" element={<PageWrapper noScroll><Home /></PageWrapper>} />
                     <Route path="/ranks" element={<PageWrapper noScroll><Ranks /></PageWrapper>} />
-                    <Route path="/tos" element={<PageWrapper><TOS /></PageWrapper>} />
-                    <Route path="/privacy" element={<PageWrapper><Privacy /></PageWrapper>} />
                     <Route path="/profile" element={<PageWrapper><Profile /></PageWrapper>} />
                 </Routes>
             </AnimatePresence>
