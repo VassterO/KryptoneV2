@@ -49,8 +49,24 @@ cypress/videos
 .DS_Store
 Thumbs.db
 
-# Ignore build files for client
+# Ignore files
 client/build/
+
+client/src/components
+
+client/src/index.js
+
+client/src/index.css
+
+client/src/App.js
+
+client/src/App.css
+
+client/src/custom-scrollbar.css
+
+Kryptonev2/node_modules
+
+client/node_modules
 
 # Local Netlify folder
 .netlify
