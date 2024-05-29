@@ -64,7 +64,3 @@ html {
         opacity: 0;
     }
 }
-
-[data-background-anim="false"] .star {
-    animation-play-state: paused;
-}
