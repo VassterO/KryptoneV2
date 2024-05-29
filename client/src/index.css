@@ -30,13 +30,12 @@ html {
 /* Estilos para las estrellas animadas */
 .star {
     position: absolute;
-    width: 4px; /* Tamaño reducido para menor costo de renderizado */
-    height: 4px;
     background: white;
-    box-shadow: 0 0 5px white; /* Sombra reducida para menor costo de renderizado */
+    box-shadow: 0 0 10px white; /* Aumentar sombra para más brillo */
     border-radius: 50%;
     transform: translate(-50%, -50%);
     opacity: 0;
+    animation: shootingStar 10s linear infinite;
     animation-fill-mode: forwards;
 }
 
@@ -45,26 +44,14 @@ html {
     position: absolute;
     top: 50%;
     left: 50%;
-    width: 150%; /* Tamaño reducido para menor costo de renderizado */
-    height: 2px;
+    width: 300%; /* Tamaño ajustado para mayor longitud del rastro */
+    height: 3px; /* Grosor del rastro */
     background: white;
-    border-radius: 2px;
+    border-radius: 3px;
     transform: translate(-50%, -50%) rotate(45deg);
-    opacity: 0.5;
-    filter: blur(1px);
-    z-index: -1;
-}
-
-.star.fast::before {
-    width: 300%; /* Ajustado para coincidir con el nuevo tamaño de estrellas */
-    height: 2px;
     opacity: 0.7;
-}
-
-.star.slow::before {
-    width: 150%; /* Ajustado para coincidir con el nuevo tamaño de estrellas */
-    height: 2px;
-    opacity: 0.5;
+    filter: blur(2px);
+    z-index: -1;
 }
 
 @keyframes shootingStar {
@@ -76,4 +63,8 @@ html {
         transform: translate(100vw, 100vh);
         opacity: 0;
     }
+}
+
+[data-background-anim="false"] .star {
+    animation-play-state: paused;
 }

@@ -6,18 +6,8 @@ import logo from '../assets/logo.png';
 const Navbar = () => {
     const [isOpen, setIsOpen] = useState(false);
 
-    // Función para manejar el inicio de sesión
-    const handleLogin = () => {
-        window.location.href = 'https://kryptonefacilities.netlify.app/';
-    };
-
-    // Función para manejar el cierre de sesión
-    const handleLogout = () => {
-        window.location.href = 'https://kryptonefacilities.netlify.app/';
-    };
-
     return (
-        <header className="bg-gray-900 text-white p-4 flex items-center justify-between sticky top-0 z-50">
+        <header className="bg-gradient-to-b from-gray-900 via-gray-900 to-transparent text-white p-4 flex items-center justify-between sticky top-0 z-50">
             <div className="flex items-center">
                 {/* Logo de la barra de navegación */}
                 <img src={logo} className="h-10" alt="Kryptone Facilities Logo" />
@@ -32,15 +22,16 @@ const Navbar = () => {
                 </svg>
             </button>
             <nav className={`lg:flex items-center space-x-4 ${isOpen ? 'block' : 'hidden'}`}>
-                {/* Enlaces de navegación */}
-                <Link to="/" className="hover:text-gray-400">Inicio</Link>
-                <Link to="/ranks" className="hover:text-gray-400">Rangos</Link>
-                <Link to="/tos" className="hover:text-gray-400">Términos de Servicio</Link>
-                <Link to="/privacy" className="hover:text-gray-400">Privacidad</Link>
-                <Link to="/profile" className="hover:text-gray-400">Profile</Link>
-                <button onClick={handleLogin} className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-                    Login with Patreon
-                </button>
+                {/* Enlaces de navegación mejorados */}
+                <Link to="/" className="hover:text-gray-400 transition duration-300 ease-in-out transform hover:scale-105 border-b-2 border-transparent hover:border-blue-500 rounded">
+                    Inicio
+                </Link>
+                <Link to="/ranks" className="hover:text-gray-400 transition duration-300 ease-in-out transform hover:scale-105 border-b-2 border-transparent hover:border-blue-500 rounded">
+                    Rangos
+                </Link>
+                <Link to="/profile" className="hover:text-gray-400 transition duration-300 ease-in-out transform hover:scale-105 border-b-2 border-transparent hover:border-blue-500 rounded">
+                    Profile
+                </Link>
             </nav>
         </header>
     );
