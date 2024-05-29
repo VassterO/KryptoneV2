@@ -11,19 +11,6 @@ import './index.css';
 import './custom-scrollbar.css';
 import { Helmet } from 'react-helmet';
 
-// Define la variable global y la función de control
-window.backgroundAnim = true;
-window.toggleBackgroundAnim = function() {
-    const stars = document.querySelectorAll('.star');
-    stars.forEach(star => {
-        if (window.backgroundAnim) {
-            star.style.animationPlayState = 'running';
-        } else {
-            star.style.animationPlayState = 'paused';
-        }
-    });
-};
-
 // Este componente envuelve cada página con una animación de transición
 const PageWrapper = ({ children, noScroll }) => (
     <motion.div
