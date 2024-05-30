@@ -19,9 +19,9 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "start": "react-app-rewired start",
-    "build": "react-app-rewired build",
-    "test": "react-app-rewired test",
+    "start": "react-scripts start",
+    "build": "react-scripts build && terser client/build/static/js/*.js --compress --mangle --output client/build/static/js/",
+    "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
@@ -42,9 +42,5 @@
       "last 1 safari version"
     ]
   },
-  "proxy": "http://localhost:5000",
-  "devDependencies": {
-    "react-app-rewired": "^2.2.1",
-    "terser-webpack-plugin": "^5.3.10"
-  }
+  "proxy": "http://localhost:5000"
 }
