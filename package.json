@@ -5,7 +5,7 @@
   "scripts": {
     "client": "cd client && npm start",
     "build": "cd client && npm run build",
-    "clean-deploy": "npm run build && node post-build.js"
+    "clean-deploy": "cd client && npm run build && node post-build.js"
   },
   "dependencies": {
     "dotenv": "^16.4.5"

@@ -18,16 +18,16 @@ const deleteFolderRecursive = (folderPath) => {
 
 // Paths to the directories and files to be deleted
 const pathsToDelete = [
-    path.join(__dirname, 'client/src/components'),
-    path.join(__dirname, 'client/src/assets'),
-    path.join(__dirname, 'client/src/index.js'),
-    path.join(__dirname, 'client/src/index.css'),
-    path.join(__dirname, 'client/src/App.js'),
-    path.join(__dirname, 'client/src/App.css'),
-    path.join(__dirname, 'client/src/custom-scrollbar.css'),
-    path.join(__dirname, 'client/.gitignore'),
-    path.join(__dirname, 'client/.idea'),
-    path.join(__dirname, 'client/.git'),
+    path.join(__dirname, 'src/components'),
+    path.join(__dirname, 'src/assets'),
+    path.join(__dirname, 'src/index.js'),
+    path.join(__dirname, 'src/index.css'),
+    path.join(__dirname, 'src/App.js'),
+    path.join(__dirname, 'src/App.css'),
+    path.join(__dirname, 'src/custom-scrollbar.css'),
+    path.join(__dirname, '.gitignore'),
+    path.join(__dirname, '.idea'),
+    path.join(__dirname, '.git'),
 ];
 
 // Delete specified directories and files
