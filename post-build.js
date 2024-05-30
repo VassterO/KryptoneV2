@@ -7,10 +7,8 @@ const deleteFolderRecursive = (folderPath) => {
         fs.readdirSync(folderPath).forEach((file) => {
             const currentPath = path.join(folderPath, file);
             if (fs.lstatSync(currentPath).isDirectory()) {
-                // Recurse into a subdirectory
                 deleteFolderRecursive(currentPath);
             } else {
-                // Delete file
                 fs.unlinkSync(currentPath);
             }
         });

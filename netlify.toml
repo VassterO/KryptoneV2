@@ -1,11 +1,9 @@
 [build]
-command = "npm install && npm run build && node post-build.js"
-publish = "client/build"
+  command = "npm install && npm run build && node post-build.js"
+  publish = "client/build"
+  base = "client"
 
 [[redirects]]
-from = "/*"
-to = "/index.html"
-status = 200
-
-[build.environment]
-  NODE_VERSION = "14" # or your desired Node.js version
+  from = "/*"
+  to = "/index.html"
+  status = 200
