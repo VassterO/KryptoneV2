@@ -12,10 +12,12 @@ const deleteFolderRecursive = (folderPath) => {
             }
         });
         fs.rmdirSync(folderPath);
+    } else if (fs.lstatSync(folderPath).isFile()) {
+        fs.unlinkSync(folderPath);
     }
 };
 
-const foldersToDelete = [
+const pathsToDelete = [
     'client/src',
     'client/.idea',
     'client/node_modules',
@@ -25,9 +27,17 @@ const foldersToDelete = [
     // Add other folders or files you want to delete
 ];
 
-foldersToDelete.forEach(folder => {
-    const folderPath = path.join(__dirname, folder);
-    deleteFolderRecursive(folderPath);
+pathsToDelete.forEach((filePath) => {
+    const fullPath = path.join(__dirname, filePath);
+    try {
+        if (fs.existsSync(fullPath)) {
+            deleteFolderRecursive(fullPath);
+        } else {
+            console.log(`Path ${fullPath} does not exist.`);
+        }
+    } catch (error) {
+        console.error(`Error deleting ${fullPath}:`, error);
+    }
 });
 
 console.log('Post-build cleanup complete.');
