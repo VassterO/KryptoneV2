@@ -4,9 +4,9 @@
   "private": true,
   "main": "app.js",
   "scripts": {
-      "client": "cd client && npm start",
-      "dev": "npm run client",
-      "build": "cd client && npm install && npm run build"
+    "client": "cd client && npm start",
+    "dev": "npm run client",
+    "build": "cd client && npm install && npm run build"
   },
   "dependencies": {
     "aos": "^2.3.4",
