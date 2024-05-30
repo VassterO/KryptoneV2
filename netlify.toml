@@ -1,9 +1,6 @@
 [build]
-  command = "npm install && npm run build && node post-build.js"
-  publish = "build"
-  base = "client"
+  command = "npm run build"
+  publish = "client/build"
 
-[[redirects]]
-  from = "/*"
-  to = "/index.html"
-  status = 200
+[context.production.environment]
+  NODE_ENV = "production"
