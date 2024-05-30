@@ -1,5 +1,5 @@
 [build]
-  command = "npm run clean-deploy"
+  command = "npm install --prefix client && npm run clean-deploy"
   publish = "client/build"
 
 [[redirects]]
