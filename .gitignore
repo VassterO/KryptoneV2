@@ -52,21 +52,10 @@ Thumbs.db
 # Ignore files
 client/build/
 
-client/src/components
-
-client/src/index.js
-
-client/src/index.css
-
-client/src/App.js
-
-client/src/App.css
-
-client/src/custom-scrollbar.css
+# Hide client source files
+client/src/
 
 Kryptonev2/node_modules
-
-client/node_modules
 
 # Local Netlify folder
 .netlify
