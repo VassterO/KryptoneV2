@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "clean-deploy": "npm run build && node ../post-build.js",
+    "clean-deploy": "npm run build && node post-build.js",
     "build": "cd client && npm install && npm run build"
   },
   "dependencies": {

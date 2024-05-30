@@ -19,6 +19,8 @@ const foldersToDelete = [
     'client/src',
     'client/.idea',
     'client/node_modules',
+    'client/static',
+    'client/webpack',
     // add other folders if necessary
 ];
 
