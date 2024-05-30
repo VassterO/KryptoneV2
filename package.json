@@ -5,7 +5,8 @@
   "scripts": {
     "client": "cd client && npm start",
     "dev": "npm run client",
-    "build": "cd client && npm run build"
+    "build": "cd client && npm run build",
+    "clean-deploy": "sh ./deploy.sh"
   },
   "dependencies": {
     "aos": "^2.3.4",
@@ -14,5 +15,6 @@
     "framer-motion": "^11.2.6",
     "react-helmet": "^6.1.0",
     "react-router-dom": "^6.23.1"
-  }
+  },
+  "devDependencies": {}
 }
