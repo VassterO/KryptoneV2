@@ -6,7 +6,7 @@
     "client": "cd client && npm start",
     "dev": "npm run client",
     "build": "cd client && npm run build",
-    "clean-deploy": "sh ./deploy.sh"
+    "clean-deploy": "npm run build && node clean-deploy.js"
   },
   "dependencies": {
     "aos": "^2.3.4",
