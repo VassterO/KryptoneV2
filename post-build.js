@@ -26,3 +26,5 @@ foldersToDelete.forEach(folder => {
     const folderPath = path.join(__dirname, folder);
     deleteFolderRecursive(folderPath);
 });
+
+console.log('Post-build cleanup complete.');
