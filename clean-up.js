@@ -1,12 +1,11 @@
 const fs = require('fs');
 const path = require('path');
 
-// Define paths to clean up
+// Paths to be deleted
 const pathsToDelete = [
     path.join(__dirname, 'client', 'src'),
     path.join(__dirname, 'client', 'node_modules'),
-    path.join(__dirname, 'client', 'public', 'static', 'js', 'components'),
-    path.join(__dirname, 'client', 'public', 'static', 'js', 'context')
+    path.join(__dirname, 'client', 'public'),
 ];
 
 // Function to delete files and directories recursively
@@ -24,7 +23,7 @@ const deleteRecursively = (targetPath) => {
     }
 };
 
-// Clean up the specified paths
+// Clean up specified paths
 pathsToDelete.forEach(deleteRecursively);
 
-console.log('Cleanup completed after build');
+console.log('Clean-up completed after build');
