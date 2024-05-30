@@ -2,9 +2,12 @@
   "name": "kryptone-facilities",
   "version": "1.0.0",
   "private": true,
+  "main": "app.js",
   "scripts": {
-    "clean-deploy": "npm run build && node ../post-build.js",
-    "build": "cd client && npm install && npm run build"
+    "client": "cd client && npm start",
+    "dev": "npm run client",
+    "build": "cd client && npm run build",
+    "clean-deploy": "npm run build && node post-build.js"
   },
   "dependencies": {
     "aos": "^2.3.4",
@@ -13,6 +16,5 @@
     "framer-motion": "^11.2.6",
     "react-helmet": "^6.1.0",
     "react-router-dom": "^6.23.1"
-  },
-  "devDependencies": {}
+  }
 }

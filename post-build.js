@@ -1,54 +1,41 @@
 const fs = require('fs');
 const path = require('path');
 
+// Function to delete a folder recursively
 const deleteFolderRecursive = (folderPath) => {
     if (fs.existsSync(folderPath)) {
         fs.readdirSync(folderPath).forEach((file) => {
-            const curPath = path.join(folderPath, file);
-            if (fs.lstatSync(curPath).isDirectory()) {
-                deleteFolderRecursive(curPath);
+            const currentPath = path.join(folderPath, file);
+            if (fs.lstatSync(currentPath).isDirectory()) {
+                // Recurse into a subdirectory
+                deleteFolderRecursive(currentPath);
             } else {
-                fs.unlinkSync(curPath);
+                // Delete file
+                fs.unlinkSync(currentPath);
             }
         });
         fs.rmdirSync(folderPath);
     }
 };
 
-const deleteFileOrFolder = (filePath) => {
-    if (fs.existsSync(filePath)) {
-        if (fs.lstatSync(filePath).isDirectory()) {
-            deleteFolderRecursive(filePath);
-        } else {
-            fs.unlinkSync(filePath);
-        }
-    } else {
-        console.log(`Path ${filePath} does not exist.`);
-    }
-};
-
+// Paths to the directories and files to be deleted
 const pathsToDelete = [
-    'client/src/components',
-    'client/src/assets',
-    'client/src/index.js',
-    'client/src/index.css',
-    'client/src/App.js',
-    'client/src/App.css',
-    'client/src/custom-scrollbar.css',
-    'client/.idea',
-    'client/.git',
-    'client/.gitignore',
-    'client/node_modules'
-    // Add other folders or files you want to delete
+    path.join(__dirname, 'client/src/components'),
+    path.join(__dirname, 'client/src/assets'),
+    path.join(__dirname, 'client/src/index.js'),
+    path.join(__dirname, 'client/src/index.css'),
+    path.join(__dirname, 'client/src/App.js'),
+    path.join(__dirname, 'client/src/App.css'),
+    path.join(__dirname, 'client/src/custom-scrollbar.css'),
+    path.join(__dirname, 'client/.gitignore'),
+    path.join(__dirname, 'client/.idea'),
+    path.join(__dirname, 'client/.git'),
 ];
 
-pathsToDelete.forEach((filePath) => {
-    const fullPath = path.join(__dirname, filePath);
-    try {
-        deleteFileOrFolder(fullPath);
-    } catch (error) {
-        console.error(`Error deleting ${fullPath}:`, error);
-    }
+// Delete specified directories and files
+pathsToDelete.forEach((deletePath) => {
+    deleteFolderRecursive(deletePath);
+    console.log(`Deleted: ${deletePath}`);
 });
 
 console.log('Post-build cleanup complete.');
