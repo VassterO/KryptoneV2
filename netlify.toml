@@ -1,6 +1,7 @@
 [build]
-  command = "npm install --prefix client && npm run clean-deploy"
+  base = "client"
   publish = "client/build"
+  command = "npm install && npm run build && node ../post-build.js"
 
 [[redirects]]
   from = "/*"

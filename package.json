@@ -3,10 +3,8 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "client": "cd client && npm start",
-    "dev": "npm run client",
-    "build": "cd client && npm run build",
-    "clean-deploy": "npm run build && node clean-up.js"
+    "clean-deploy": "npm run build && node ../post-build.js",
+    "build": "cd client && npm install && npm run build"
   },
   "dependencies": {
     "aos": "^2.3.4",
