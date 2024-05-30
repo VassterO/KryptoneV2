@@ -3,7 +3,7 @@ const path = require('path');
 
 const deleteFolderRecursive = (folderPath) => {
     if (fs.existsSync(folderPath)) {
-        fs.readdirSync(folderPath).forEach((file, index) => {
+        fs.readdirSync(folderPath).forEach((file) => {
             const curPath = path.join(folderPath, file);
             if (fs.lstatSync(curPath).isDirectory()) {
                 deleteFolderRecursive(curPath);
@@ -12,29 +12,40 @@ const deleteFolderRecursive = (folderPath) => {
             }
         });
         fs.rmdirSync(folderPath);
-    } else if (fs.lstatSync(folderPath).isFile()) {
-        fs.unlinkSync(folderPath);
+    }
+};
+
+const deleteFileOrFolder = (filePath) => {
+    if (fs.existsSync(filePath)) {
+        if (fs.lstatSync(filePath).isDirectory()) {
+            deleteFolderRecursive(filePath);
+        } else {
+            fs.unlinkSync(filePath);
+        }
+    } else {
+        console.log(`Path ${filePath} does not exist.`);
     }
 };
 
 const pathsToDelete = [
-    'client/src',
+    'client/src/components',
+    'client/src/assets',
+    'client/src/index.js',
+    'client/src/index.css',
+    'client/src/App.js',
+    'client/src/App.css',
+    'client/src/custom-scrollbar.css',
     'client/.idea',
-    'client/node_modules',
-    'client/public',
     'client/.git',
     'client/.gitignore',
+    'client/node_modules'
     // Add other folders or files you want to delete
 ];
 
 pathsToDelete.forEach((filePath) => {
     const fullPath = path.join(__dirname, filePath);
     try {
-        if (fs.existsSync(fullPath)) {
-            deleteFolderRecursive(fullPath);
-        } else {
-            console.log(`Path ${fullPath} does not exist.`);
-        }
+        deleteFileOrFolder(fullPath);
     } catch (error) {
         console.error(`Error deleting ${fullPath}:`, error);
     }
