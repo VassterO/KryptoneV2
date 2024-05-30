@@ -1,4 +1,9 @@
 [build]
   base = "client"
   command = "npm run clean-deploy"
-  publish = "client/build"
+  publish = "build"
+
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
