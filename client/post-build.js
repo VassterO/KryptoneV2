@@ -3,7 +3,7 @@ const path = require('path');
 
 // Function to delete a folder recursively
 const deleteFolderRecursive = (folderPath) => {
-    if (fs.existsSync(folderPath)) {
+    if (fs.existsSync(folderPath) && fs.lstatSync(folderPath).isDirectory()) {
         fs.readdirSync(folderPath).forEach((file) => {
             const currentPath = path.join(folderPath, file);
             if (fs.lstatSync(currentPath).isDirectory()) {
@@ -13,6 +13,13 @@ const deleteFolderRecursive = (folderPath) => {
             }
         });
         fs.rmdirSync(folderPath);
+    }
+};
+
+// Function to delete a file
+const deleteFile = (filePath) => {
+    if (fs.existsSync(filePath) && fs.lstatSync(filePath).isFile()) {
+        fs.unlinkSync(filePath);
     }
 };
 
@@ -32,8 +39,16 @@ const pathsToDelete = [
 
 // Delete specified directories and files
 pathsToDelete.forEach((deletePath) => {
-    deleteFolderRecursive(deletePath);
-    console.log(`Deleted: ${deletePath}`);
+    if (fs.existsSync(deletePath)) {
+        if (fs.lstatSync(deletePath).isDirectory()) {
+            deleteFolderRecursive(deletePath);
+        } else if (fs.lstatSync(deletePath).isFile()) {
+            deleteFile(deletePath);
+        }
+        console.log(`Deleted: ${deletePath}`);
+    } else {
+        console.log(`Path does not exist: ${deletePath}`);
+    }
 });
 
 console.log('Post-build cleanup complete.');
