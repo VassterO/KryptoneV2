@@ -19,9 +19,10 @@ const foldersToDelete = [
     'client/src',
     'client/.idea',
     'client/node_modules',
-    'client/static',
-    'client/webpack',
-    // add other folders if necessary
+    'client/public',
+    'client/.git',
+    'client/.gitignore',
+    // Add other folders or files you want to delete
 ];
 
 foldersToDelete.forEach(folder => {
