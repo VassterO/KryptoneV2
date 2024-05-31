@@ -20,8 +20,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build && npm run terser",
-    "terser": "terser build/static/js/*.js --compress --mangle --output build/static/js/",
+    "build": "react-scripts build && node minify.js",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
@@ -45,6 +44,6 @@
   },
   "proxy": "http://localhost:5000",
   "devDependencies": {
-    "terser": "^5.31.0"
+    "terser": "^5.7.0"
   }
 }
