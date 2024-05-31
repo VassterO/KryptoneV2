@@ -4,14 +4,14 @@ import StarBackground from '../components/StarBackground'; // Adjust the path as
 
 const Profile = () => {
     useEffect(() => {
-        const deviceType = /Mobi|Android/i.test(navigator.userAgent) ? 'mobile' : 'desktop';
+        const isMobileDevice = /Mobi|Android/i.test(navigator.userAgent);
 
-        if (deviceType === 'desktop') {
+        if (!isMobileDevice) {
             document.body.classList.add('hide-scrollbar');
         }
 
         return () => {
-            if (deviceType === 'desktop') {
+            if (!isMobileDevice) {
                 document.body.classList.remove('hide-scrollbar');
             }
         };

@@ -46,10 +46,15 @@ const StarBackground = () => {
         if (deviceType === 'mobile') sizeFactor = 0.5;
         if (deviceType === 'tablet') sizeFactor = 0.75;
 
-        const numStars = Math.floor((window.innerWidth * window.innerHeight) / (2560 * 1440) * 50); // Ajustar cantidad basado en la resolución
+        const numStars = Math.floor(
+            (window.innerWidth * window.innerHeight) / (2560 * 1440) * 50
+        ); // Ajustar cantidad basado en la resolución
 
         // Genera las estrellas iniciales
-        const initialStars = Array.from({ length: numStars }, (_, index) => generateStar(index, sizeFactor));
+        const initialStars = Array.from(
+            { length: numStars },
+            (_, index) => generateStar(index, sizeFactor)
+        );
         setStars(initialStars);
 
         // Añade nuevas estrellas periódicamente hasta un máximo ajustado
@@ -66,11 +71,7 @@ const StarBackground = () => {
         return () => clearInterval(interval);
     }, []);
 
-    return (
-        <div className="fixed top-0 left-0 w-full h-full overflow-hidden z-0">
-            {stars}
-        </div>
-    );
+    return <div className="fixed top-0 left-0 w-full h-full overflow-hidden z-0">{stars}</div>;
 };
 
 export default StarBackground;

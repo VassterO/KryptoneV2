@@ -17,6 +17,7 @@ html {
     scroll-behavior: smooth;
 }
 
+/* Estilos de animación de estrellas */
 .star {
     position: absolute;
     background: white;
@@ -54,22 +55,25 @@ html {
     }
 }
 
+/* Ocultar scrollbar para desktop */
 .hide-scrollbar {
     overflow: hidden;
 }
 
+/* Mostrar scrollbar para móviles y tabletas */
 @media (max-width: 1024px) {
     .hide-scrollbar {
         overflow: auto;
-        -ms-overflow-style: auto;
-        scrollbar-width: auto;
+        -ms-overflow-style: auto; /* IE 10+ */
+        scrollbar-width: auto; /* Firefox */
     }
 
     .hide-scrollbar::-webkit-scrollbar {
-        display: block;
+        display: block; /* Safari y Chrome */
     }
 }
 
+/* Ajustes adicionales para dispositivos móviles */
 @media (max-width: 768px) {
     .star {
         width: 6px;
@@ -80,12 +84,30 @@ html {
         width: 400%;
         height: 4px;
     }
+
+    .header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .header img {
+        margin-bottom: 8px;
+    }
+
+    nav {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    nav a {
+        padding: 16px 24px;
+        font-size: 1.2rem;
+        width: 100%; /* Asegura el ancho completo para un mejor objetivo táctil */
+    }
 }
 
-.header {
-    background: linear-gradient(to bottom, #1a202c, #2d3748);
-}
-
+/* Estilos generales para navegación y botones */
 nav a {
     padding: 12px 16px;
     font-size: 1.1rem;
@@ -98,25 +120,6 @@ button {
     background: none;
 }
 
-@media (max-width: 768px) {
-    nav {
-        display: flex;
-        flex-direction: column;
-        align-items: flex-start;
-    }
-
-    nav a {
-        padding: 16px 24px;
-        font-size: 1.2rem;
-        width: 100%; /* Ensure full width for better touch target */
-    }
-
-    .header {
-        flex-direction: column;
-        align-items: flex-start;
-    }
-
-    .header img {
-        margin-bottom: 8px;
-    }
+.header {
+    background: linear-gradient(to bottom, #1a202c, #2d3748);
 }
