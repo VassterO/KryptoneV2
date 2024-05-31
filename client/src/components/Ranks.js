@@ -6,7 +6,6 @@ import vanguardia from '../assets/vanguardia.png';
 import arcano from '../assets/arcano.png';
 import investigador from '../assets/investigador.png';
 
-// Aquí definimos los datos de los diferentes rangos que ofrecemos
 const ranks = [
     {
         name: 'Vanguardia',
@@ -31,30 +30,26 @@ const ranks = [
     },
 ];
 
-// Este componente muestra los rangos disponibles y sus detalles
 const Ranks = () => {
     const [expandedIndex, setExpandedIndex] = useState(null);
 
-    // Esta función se encarga de expandir o contraer la información de un rango
     const handleExpand = (index) => setExpandedIndex(expandedIndex === index ? null : index);
 
     useEffect(() => {
-        // Ocultamos la barra de desplazamiento cuando se monta el componente
         document.body.classList.add('hide-scrollbar');
         return () => document.body.classList.remove('hide-scrollbar');
     }, []);
 
     return (
-        <div className="relative min-h-screen bg-gradient-to-b from-gray-900 via-gray-800 to-black text-white flex flex-col items-center justify-center py-8">
+        <div className="relative min-h-screen bg-gradient-to-b from-gray-900 via-gray-800 to-black text-white flex flex-col items-center justify-center py-8 px-4 md:px-8 lg:px-12">
             <Helmet>
                 <title>Rangos | Kryptone Facilities</title>
                 <meta name="description" content="Consulta los rangos disponibles en Kryptone Facilities, incluyendo Vanguardia, Arcano e Investigador, y sus beneficios exclusivos." />
                 <meta name="keywords" content="Kryptone Facilities, rangos, Vanguardia, Arcano, Investigador, beneficios, SCP Secret Laboratory" />
             </Helmet>
-            {/* Fondo animado con estrellas */}
             <StarBackground />
             <motion.div
-                className="relative z-10 w-10/12 md:w-8/12 lg:w-6/12"
+                className="relative z-10 w-full md:w-8/12 lg:w-6/12"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ duration: 1 }}
@@ -77,7 +72,7 @@ const Ranks = () => {
                                     src={rank.image}
                                     alt={rank.name}
                                     className="w-24 h-24 rounded-lg mr-4 transition duration-500 transform hover:scale-105 lazyload"
-                                    loading="lazy" // Lazy loading attribute
+                                    loading="lazy"
                                 />
                                 <h2 className="text-2xl font-bold">{rank.name}</h2>
                             </div>

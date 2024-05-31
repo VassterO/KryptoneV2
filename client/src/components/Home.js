@@ -3,26 +3,22 @@ import { motion } from 'framer-motion';
 import StarBackground from './StarBackground';
 import { Helmet } from 'react-helmet';
 
-// Este componente representa la página principal de nuestra aplicación
 const Home = () => {
     useEffect(() => {
-        // Vamos a ocultar la barra de desplazamiento cuando se cargue este componente
         document.body.classList.add('hide-scrollbar');
         return () => {
-            // Y la volvemos a mostrar cuando el componente se desmonte
             document.body.classList.remove('hide-scrollbar');
         };
     }, []);
 
     return (
-        <div className="relative min-h-screen bg-gradient-to-b from-gray-900 via-gray-800 to-black text-white flex flex-col items-center justify-center py-8">
+        <div className="relative min-h-screen bg-gradient-to-b from-gray-900 via-gray-800 to-black text-white flex flex-col items-center justify-center py-8 px-4 md:px-8 lg:px-12">
             <Helmet>
                 <title>Home | Kryptone Facilities</title>
                 <meta name="description" content="Bienvenido a la pagina oficial de Kryptone Facilities" />
                 <meta name="keywords" content="Kryptone Facilities, SCP Secret Laboratory, Servidor SCP, Comunidad SCP" />
                 <meta name="author" content="Kryptone Facilities" />
             </Helmet>
-            {/* Fondo animado con estrellas */}
             <StarBackground />
             <motion.div
                 className="relative z-10 p-8 w-full md:w-8/12 lg:w-6/12 text-center flex flex-col items-center justify-center"

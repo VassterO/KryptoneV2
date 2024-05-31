@@ -1,4 +1,4 @@
-@import './custom-scrollbar.css'; /* Import custom scrollbar styles */
+@import './custom-scrollbar.css';
 @import 'tailwindcss/base';
 @import 'tailwindcss/components';
 @import 'tailwindcss/utilities';
@@ -6,7 +6,7 @@
 body {
     margin: 0;
     padding: 0;
-    overflow-x: hidden; /* Prevent horizontal scrolling */
+    overflow-x: hidden;
 }
 
 html, body, #root {
@@ -17,11 +17,10 @@ html {
     scroll-behavior: smooth;
 }
 
-/* Styles for animated stars */
 .star {
     position: absolute;
     background: white;
-    box-shadow: 0 0 10px white; /* Increase shadow for more glow */
+    box-shadow: 0 0 10px white;
     border-radius: 50%;
     transform: translate(-50%, -50%);
     opacity: 0;
@@ -34,8 +33,8 @@ html {
     position: absolute;
     top: 50%;
     left: 50%;
-    width: 300%; /* Adjust size for longer trail */
-    height: 3px; /* Trail thickness */
+    width: 300%;
+    height: 3px;
     background: white;
     border-radius: 3px;
     transform: translate(-50%, -50%) rotate(45deg);
@@ -55,25 +54,22 @@ html {
     }
 }
 
-/* Hide scrollbar for desktop */
 .hide-scrollbar {
     overflow: hidden;
 }
 
-/* Show scrollbar for mobile and tablet */
 @media (max-width: 1024px) {
     .hide-scrollbar {
         overflow: auto;
-        -ms-overflow-style: auto;  /* IE 10+ */
-        scrollbar-width: auto;  /* Firefox */
+        -ms-overflow-style: auto;
+        scrollbar-width: auto;
     }
 
     .hide-scrollbar::-webkit-scrollbar {
-        display: block;  /* Safari and Chrome */
+        display: block;
     }
 }
 
-/* Additional adjustments for mobile devices */
 @media (max-width: 768px) {
     .star {
         width: 6px;
@@ -86,17 +82,41 @@ html {
     }
 }
 
-/* Additional styles for the navigation bar on mobile */
 .header {
     background: linear-gradient(to bottom, #1a202c, #2d3748);
 }
 
 nav a {
-    padding: 8px 16px;
+    padding: 12px 16px;
+    font-size: 1.1rem;
+    display: block;
 }
 
 button {
     padding: 8px;
     border: none;
     background: none;
+}
+
+@media (max-width: 768px) {
+    nav {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    nav a {
+        padding: 16px 24px;
+        font-size: 1.2rem;
+        width: 100%; /* Ensure full width for better touch target */
+    }
+
+    .header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .header img {
+        margin-bottom: 8px;
+    }
 }
