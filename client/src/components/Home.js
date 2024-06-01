@@ -1,21 +1,26 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useCallback } from 'react';
 import { motion } from 'framer-motion';
 import { Helmet } from 'react-helmet';
 import StarBackground from './StarBackground';
 
 const Home = () => {
-    useEffect(() => {
-        // Agregar la clase 'hide-scrollbar' cuando el componente se monta
+    const addHideScrollbarClass = useCallback(() => {
         document.body.classList.add('hide-scrollbar');
-        // Eliminar la clase 'hide-scrollbar' cuando el componente se desmonta
-        return () => {
-            document.body.classList.remove('hide-scrollbar');
-        };
     }, []);
+
+    const removeHideScrollbarClass = useCallback(() => {
+        document.body.classList.remove('hide-scrollbar');
+    }, []);
+
+    useEffect(() => {
+        addHideScrollbarClass();
+        return () => {
+            removeHideScrollbarClass();
+        };
+    }, [addHideScrollbarClass, removeHideScrollbarClass]);
 
     return (
         <>
-            {/* Configuración del encabezado del documento con react-helmet */}
             <Helmet>
                 <title>Home | Kryptone Facilities</title>
                 <meta
@@ -28,9 +33,7 @@ const Home = () => {
                 />
                 <meta name="author" content="Kryptone Facilities" />
             </Helmet>
-            {/* Contenedor principal */}
             <div className="relative min-h-screen bg-gradient-to-b from-gray-900 via-gray-800 to-black text-white flex flex-col items-center justify-center py-8 px-4 md:px-8 lg:px-12">
-                {/* Fondo animado de estrellas */}
                 <StarBackground />
                 <motion.div
                     className="relative z-10 p-8 w-full md:w-8/12 lg:w-6/12 text-center flex flex-col items-center justify-center"
@@ -55,4 +58,4 @@ const Home = () => {
     );
 };
 
-export default Home;
+export default React.memo(Home);

@@ -1,4 +1,4 @@
-const { readdirSync, readFileSync, writeFileSync } = require('fs');
+/*const { readdirSync, readFileSync, writeFileSync } = require('fs');
 const { join } = require('path');
 const terser = require('terser');
 
@@ -36,4 +36,4 @@ minifyFiles().then(() => {
     console.log('Minification complete.');
 }).catch(err => {
     console.error('Error during minification process:', err);
-});
+}); */

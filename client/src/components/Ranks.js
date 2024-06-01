@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useCallback } from 'react';
 import { motion } from 'framer-motion';
 import { Helmet } from 'react-helmet';
 import StarBackground from './StarBackground';
@@ -40,9 +40,9 @@ const Ranks = () => {
         };
     }, []);
 
-    const handleExpand = (index) => {
-        setExpandedIndex(expandedIndex === index ? null : index);
-    };
+    const handleExpand = useCallback((index) => {
+        setExpandedIndex(prevIndex => (prevIndex === index ? null : index));
+    }, []);
 
     return (
         <>
@@ -82,7 +82,7 @@ const Ranks = () => {
                                     <img
                                         src={rank.image}
                                         alt={rank.name}
-                                        className="w-24 h-24 rounded-lg mr-4 transition duration-500 transform hover:scale-105 lazyload"
+                                        className="w-24 h-24 rounded-lg mr-4 transition duration-500 transform hover:scale-105"
                                         loading="lazy"
                                     />
                                     <h2 className="text-2xl font-bold">{rank.name}</h2>
@@ -115,4 +115,4 @@ const Ranks = () => {
     );
 };
 
-export default Ranks;
+export default React.memo(Ranks);

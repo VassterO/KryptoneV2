@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useCallback } from 'react';
 import { Link } from 'react-router-dom';
 import { Helmet } from 'react-helmet';
 import logo from '../assets/logo.png';
@@ -6,13 +6,13 @@ import logo from '../assets/logo.png';
 const Navbar = () => {
     const [isOpen, setIsOpen] = useState(false);
 
-    const toggleMenu = () => {
-        setIsOpen(!isOpen);
-    };
+    const toggleMenu = useCallback(() => {
+        setIsOpen(prevState => !prevState);
+    }, []);
 
-    const closeMenu = () => {
+    const closeMenu = useCallback(() => {
         setIsOpen(false);
-    };
+    }, []);
 
     return (
         <>
@@ -81,4 +81,4 @@ const Navbar = () => {
     );
 };
 
-export default Navbar;
+export default React.memo(Navbar);
