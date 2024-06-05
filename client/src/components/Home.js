@@ -6,9 +6,7 @@ import Footer from './Footer';
 
 const Home = () => {
     useEffect(() => {
-        // Add 'hide-scrollbar' class when component mounts
         document.body.classList.add('hide-scrollbar');
-        // Remove 'hide-scrollbar' class when component unmounts
         return () => {
             document.body.classList.remove('hide-scrollbar');
         };
@@ -28,7 +26,8 @@ const Home = () => {
                     className="relative z-10 p-8 w-full md:w-8/12 lg:w-6/12 text-center flex flex-col items-center justify-center"
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
-                    transition={{ duration: 1 }}
+                    exit={{ opacity: 0, y: 20 }}
+                    transition={{ duration: 0.6, ease: [0.42, 0, 0.58, 1] }}
                 >
                     <h1 className="text-4xl font-bold mb-4">
                         Bienvenido a la página oficial de Kryptone Facilities
