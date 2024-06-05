@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Helmet } from 'react-helmet';
 import logo from '../assets/logo.png';
@@ -6,13 +6,13 @@ import logo from '../assets/logo.png';
 const Navbar = () => {
     const [isOpen, setIsOpen] = useState(false);
 
-    const toggleMenu = useCallback(() => {
-        setIsOpen(prevState => !prevState);
-    }, []);
+    const toggleMenu = () => {
+        setIsOpen(!isOpen);
+    };
 
-    const closeMenu = useCallback(() => {
+    const closeMenu = () => {
         setIsOpen(false);
-    }, []);
+    };
 
     return (
         <>
@@ -27,10 +27,10 @@ const Navbar = () => {
                     content="Kryptone Facilities, Navegación, Inicio, Rangos, Perfil"
                 />
             </Helmet>
-            <header className="bg-gradient-to-b from-gray-900 via-gray-900 to-transparent text-white p-4 flex items-center justify-between sticky top-0 z-50">
+            <header className="text-white p-4 flex items-center justify-between sticky top-0 z-50">
                 <div className="flex items-center">
                     <img src={logo} className="h-10" alt="Kryptone Facilities Logo" />
-                    <h1 className="ml-2 font-bold">Kryptone Facilities</h1>
+                    <h1 className="ml-2 font-bold text-lg">Kryptone Facilities</h1>
                 </div>
                 <button
                     className="block lg:hidden p-2 rounded-md text-gray-500 hover:text-white focus:outline-none"

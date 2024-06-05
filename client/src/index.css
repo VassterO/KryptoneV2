@@ -15,6 +15,7 @@ html, body, #root {
 
 html {
     scroll-behavior: smooth;
+    background: linear-gradient(to bottom, #2a2a72, #009ffd); /* Subtle gradient background */
 }
 
 /* Estilos de animación de estrellas */
@@ -121,5 +122,19 @@ button {
 }
 
 .header {
-    background: linear-gradient(to bottom, #1a202c, #2d3748);
+    background: #3a3a3a; /* Distinguishable background color */
+}
+
+.cta-button {
+    padding: 12px 24px;
+    background: #ff6600; /* Contrasting color */
+    color: white;
+    font-size: 1.2rem;
+    border-radius: 8px;
+    transition: transform 0.3s, background 0.3s;
+}
+
+.cta-button:hover {
+    background: #cc5200;
+    transform: scale(1.05);
 }
