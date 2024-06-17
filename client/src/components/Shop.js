@@ -1,44 +1,43 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Helmet } from 'react-helmet';
 import StarBackground from './StarBackground';
 import vanguardia from '../assets/vanguardia.webp';
-import arcano from '../assets/arcano.png';
-import investigador from '../assets/investigador.png';
+import arcano from '../assets/arcano.webp';
+import investigador from '../assets/investigador.webp';
+import Footer from './Footer';
+import SecureRedirect from '../security/SecureRedirect';
+import '../styles/Ranks.css';
 
 const ranks = [
     {
         name: 'Vanguardia',
         image: vanguardia,
-        description: 'Acceso anticipado y soporte prioritario para usuarios que eligen el rango Vanguardia.',
-        price: 'Por determinar',
-        benefits: ['Acceso anticipado', 'Soporte prioritario'],
+        description: 'El rango Vanguardia incluye acceso a funciones básicas de donadores.',
+        price: '3.25€ / mes',
+        benefits: ['Chat de donadores', 'Auras del color de tu role', 'Emotes'],
+        patreonLink: 'https://www.patreon.com/checkout/KryptoneFacilities?rid=22992460'
     },
     {
         name: 'Arcano',
         image: arcano,
-        description: 'Herramientas avanzadas y publicaciones exclusivas para usuarios que eligen el rango Arcano.',
-        price: 'Por determinar',
-        benefits: ['Herramientas avanzadas de investigación', 'Publicaciones exclusivas'],
+        description: 'El rango Arcano incluye todas las ventajas de Vanguardia, además de gorros',
+        price: '4.33€ / mes',
+        benefits: ['Chat de donadores','Auras del color de tu role','Emotes', 'Gorros'],
+        patreonLink: 'https://www.patreon.com/checkout/KryptoneFacilities?rid=22992506'
     },
     {
         name: 'Investigador',
         image: investigador,
-        description: 'Recursos exclusivos y participación en eventos especiales para usuarios que eligen el rango Investigador.',
-        price: 'Por determinar',
-        benefits: ['Acceso a recursos exclusivos', 'Participación en eventos especiales'],
+        description: 'El rango Investigador brinda acceso a todas las ventajas de los rangos anteriores, además de mascotas.',
+        price: '6.50€ / mes',
+        benefits: ['Chat de donadores', 'Auras del color', 'Emotes', 'Gorros', 'Mascotas'],
+        patreonLink: 'https://www.patreon.com/checkout/KryptoneFacilities?rid=22992506'
     },
 ];
 
-const Ranks = () => {
+const Shop = () => {
     const [expandedIndex, setExpandedIndex] = useState(null);
-
-    useEffect(() => {
-        document.body.classList.add('hide-scrollbar');
-        return () => {
-            document.body.classList.remove('hide-scrollbar');
-        };
-    }, []);
 
     const handleExpand = (index) => {
         setExpandedIndex(expandedIndex === index ? null : index);
@@ -64,7 +63,7 @@ const Ranks = () => {
                     {ranks.map((rank, index) => (
                         <motion.div
                             key={index}
-                            className="mb-8 p-4 bg-gray-800 bg-opacity-75 rounded-lg shadow-2xl"
+                            className="rank-card"
                             initial={{ opacity: 0 }}
                             animate={{ opacity: 1 }}
                             exit={{ opacity: 0, y: 20 }}
@@ -72,16 +71,16 @@ const Ranks = () => {
                         >
                             <button
                                 onClick={() => handleExpand(index)}
-                                className="w-full text-left focus:outline-none"
+                                className="focus:outline-none"
                             >
                                 <div className="flex items-center">
                                     <img
                                         src={rank.image}
                                         alt={rank.name}
-                                        className="w-24 h-24 rounded-lg mr-4 transition duration-500 transform hover:scale-105 lazyload"
+                                        className="transition duration-500 transform hover:scale-105"
                                         loading="lazy"
                                     />
-                                    <h2 className="text-2xl font-bold">{rank.name}</h2>
+                                    <h2>{rank.name}</h2>
                                 </div>
                             </button>
                             <motion.div
@@ -98,17 +97,23 @@ const Ranks = () => {
                                             <li key={idx}>{benefit}</li>
                                         ))}
                                     </ul>
-                                    <button className="px-4 py-2 bg-blue-500 hover:bg-blue-700 text-white font-bold rounded transition transform hover:scale-105">
-                                        Suscribirse
-                                    </button>
+                                    <SecureRedirect url={rank.patreonLink}>
+                                        <button className="action-btn">
+                                            Suscribirse
+                                        </button>
+                                    </SecureRedirect>
                                 </div>
                             </motion.div>
                         </motion.div>
                     ))}
                 </motion.div>
+                <div className="mt-8 text-lg">
+                    <p>Pago mensual a través de <a href="https://patreon.com/kryptonefacilities" className="text-blue-500 hover:underline">Patreon</a></p>
+                </div>
             </div>
+            <Footer />
         </>
     );
 };
 
-export default Ranks;
+export default Shop;

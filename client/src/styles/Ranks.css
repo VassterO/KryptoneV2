@@ -1,0 +1,65 @@
+.rank-card {
+    margin-bottom: 1rem;
+    padding: 1rem;
+    background-color: rgba(0, 51, 102, 0.9); /* Blue-ish background color */
+    border-radius: 10px; /* Border radius */
+    box-shadow: 0 10px 20px rgba(0, 0, 102, 0.5); /* Blue-ish shadow */
+    transition: all 0.3s ease; /* Add smooth transition */
+}
+
+.rank-card:hover {
+    transform: translateY(-10px); /* Hover effect to lift the card */
+    box-shadow: 0 20px 40px rgba(0, 0, 102, 0.7); /* Stronger blue-ish shadow on hover */
+}
+
+.rank-card button {
+    width: 100%;
+    text-align: left;
+    background: none;
+    border: none;
+    color: inherit;
+    cursor: pointer;
+    padding: 0;
+}
+
+.rank-card img {
+    width: 6rem;
+    height: 6rem;
+    border-radius: 50%; /* Image border radius */
+    margin-right: 1rem;
+    transition: transform 0.3s;
+}
+
+.rank-card img:hover {
+    transform: scale(1.1); /* Hover scale effect */
+}
+
+.rank-card h2 {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #ffcc00; /* Yellow color for text */
+}
+
+button.action-btn {
+    background-color: #2563eb; /* Blue background color */
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 10px 20px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    display: inline-block;
+    text-align: center;
+    margin-top: 10px;
+}
+
+button.action-btn:hover {
+    background-color: #1d4ed8; /* Darker blue on hover */
+    transform: scale(1.05);
+}
+
+button.action-btn:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.5);
+}

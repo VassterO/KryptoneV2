@@ -1,0 +1,86 @@
+:root {
+    --margin-top-adjustment: -10vh; /* Default value */
+}
+
+.home-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    text-align: center;
+    padding: 20px;
+    color: white; /* Make the text white */
+}
+
+.home-content {
+    margin-top: var(--margin-top-adjustment);
+}
+
+.home-title {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+}
+
+.home-subtitle {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+.home-text {
+    font-size: 1rem;
+    max-width: 800px;
+}
+
+/* Adjustments for different screen sizes */
+@media (min-width: 2560px) {
+    .home-title {
+        font-size: 3rem;
+    }
+    .home-subtitle {
+        font-size: 2rem;
+    }
+    .home-text {
+        font-size: 1.2rem;
+        max-width: 1200px;
+    }
+}
+
+@media (max-width: 1440px) {
+    .home-title {
+        font-size: 2.5rem;
+    }
+    .home-subtitle {
+        font-size: 1.5rem;
+    }
+    .home-text {
+        font-size: 1rem;
+        max-width: 1000px;
+    }
+}
+
+@media (max-width: 1024px) {
+    .home-title {
+        font-size: 2rem;
+    }
+    .home-subtitle {
+        font-size: 1.2rem;
+    }
+    .home-text {
+        font-size: 0.9rem;
+        max-width: 800px;
+    }
+}
+
+@media (max-width: 768px) {
+    .home-title {
+        font-size: 1.8rem;
+    }
+    .home-subtitle {
+        font-size: 1rem;
+    }
+    .home-text {
+        font-size: 0.8rem;
+        max-width: 600px;
+    }
+}

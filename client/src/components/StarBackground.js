@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
+import '../styles/StarBackground.css';
 
-// Función para detectar el agente de usuario y determinar el tipo de dispositivo
 const getDeviceType = () => {
     const ua = navigator.userAgent;
     if (/tablet|ipad|playbook|silk/i.test(ua) && !/mobi|android/i.test(ua)) {
@@ -12,11 +12,10 @@ const getDeviceType = () => {
     return 'desktop';
 };
 
-// Función para generar una estrella con animación
 const generateStar = (index, sizeFactor) => {
-    const speed = 4 + Math.random() * 2; // Velocidad entre 4s y 6s
-    const size = (Math.random() * 2 + 3) * sizeFactor; // Tamaño ajustado proporcionalmente
-    const delay = Math.random() * 2; // Retardo inicial hasta 2s
+    const speed = 4 + Math.random() * 2;
+    const size = (Math.random() * 2 + 3) * sizeFactor;
+    const delay = Math.random() * 2;
 
     return (
         <div
@@ -36,7 +35,6 @@ const generateStar = (index, sizeFactor) => {
     );
 };
 
-// Este componente muestra un fondo animado con estrellas
 const StarBackground = () => {
     const [stars, setStars] = useState([]);
 
@@ -48,16 +46,14 @@ const StarBackground = () => {
 
         const numStars = Math.floor(
             (window.innerWidth * window.innerHeight) / (2560 * 1440) * 50
-        ); // Ajustar cantidad basado en la resolución
+        );
 
-        // Genera las estrellas iniciales
         const initialStars = Array.from(
             { length: numStars },
             (_, index) => generateStar(index, sizeFactor)
         );
         setStars(initialStars);
 
-        // Añade nuevas estrellas periódicamente hasta un máximo ajustado
         const interval = setInterval(() => {
             setStars((prevStars) => {
                 if (prevStars.length < numStars * 2) {

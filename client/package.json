@@ -5,6 +5,11 @@
   "dependencies": {
     "@tailwindcss/forms": "^0.5.7",
     "@tailwindcss/typography": "^0.5.13",
+    "@emotion/react": "^11.11.4",
+    "@emotion/styled": "^11.11.5",
+    "@mui/icons-material": "^5.15.20",
+    "@mui/material": "^5.15.20",
+    "@mui/styled-engine": "^5.15.14",
     "autoprefixer": "^10.4.19",
     "framer-motion": "^11.2.6",
     "postcss": "^8.4.21",
@@ -22,7 +27,8 @@
     "start": "react-scripts start",
     "build": "react-scripts build && node minify.js",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "clean": "rm -rf build"
   },
   "eslintConfig": {
     "extends": [
