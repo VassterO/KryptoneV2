@@ -1,0 +1,13 @@
+.profile-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh; /* Ensure the container takes full height of the viewport */
+}
+
+.relative.z-20.flex.items-center.justify-center.h-full {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+}

@@ -1,6 +1,8 @@
 import React, { useEffect } from 'react';
 import { motion } from 'framer-motion';
-import StarBackground from '../components/StarBackground'; // Adjust the path as needed
+import { Helmet } from 'react-helmet';
+import StarBackground from './StarBackground';
+import '../styles/Profile.css';
 
 const Profile = () => {
     useEffect(() => {
@@ -19,11 +21,16 @@ const Profile = () => {
 
     return (
         <motion.div
-            className="min-h-screen bg-gray-900 text-white flex flex-col items-center justify-center p-4 relative overflow-auto"
+            className="profile-container relative z-20 flex items-center justify-center h-full min-h-screen bg-gray-900 text-white"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 1 }}
         >
+            <Helmet>
+                <title>Perfil | Kryptone Facilities</title>
+                <meta name="description" content="Consulta tu perfil en Kryptone Facilities." />
+                <meta name="keywords" content="Kryptone Facilities, perfil, SCP Secret Laboratory" />
+            </Helmet>
             <div className="absolute w-full h-full bg-gray-900"></div>
             <StarBackground />
             <div className="relative z-20">

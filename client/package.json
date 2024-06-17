@@ -2,10 +2,14 @@
   "name": "client",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://vasstero.github.io/KryptoneV2",
   "dependencies": {
     "@tailwindcss/forms": "^0.5.7",
     "@tailwindcss/typography": "^0.5.13",
+    "@emotion/react": "^11.11.4",
+    "@emotion/styled": "^11.11.5",
+    "@mui/icons-material": "^5.15.20",
+    "@mui/material": "^5.15.20",
+    "@mui/styled-engine": "^5.15.14",
     "autoprefixer": "^10.4.19",
     "framer-motion": "^11.2.6",
     "postcss": "^8.4.21",
@@ -24,8 +28,7 @@
     "build": "react-scripts build && node minify.js",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "predeploy": "npm run build",
-    "deploy": "gh-pages -d build"
+    "clean": "rm -rf build"
   },
   "eslintConfig": {
     "extends": [
@@ -47,7 +50,6 @@
   },
   "proxy": "http://localhost:5000",
   "devDependencies": {
-    "terser": "^5.7.0",
-    "gh-pages": "^6.1.1"
+    "terser": "^5.7.0"
   }
 }

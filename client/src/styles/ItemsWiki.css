@@ -1,0 +1,120 @@
+.modal-overlay {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8); /* Dark background */
+    z-index: 1000; /* Ensure it appears above other content */
+}
+
+.modal-content {
+    background-color: #1f2937; /* Dark background color */
+    border-radius: 12px;
+    padding: 20px;
+    width: 90%;
+    max-width: 500px;
+    max-height: 90%;
+    overflow-y: auto;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5);
+    transform: translateY(-50px);
+    transition: transform 0.3s ease, opacity 0.3s ease;
+    opacity: 0;
+    border: none; /* Ensure no border is applied */
+}
+
+.modal-content.modal-fade-in {
+    transform: translateY(0);
+    opacity: 1;
+}
+
+.modal-content.modal-fade-out {
+    transform: translateY(-50px);
+    opacity: 0;
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+    border-bottom: 1px solid #444;
+    padding-bottom: 10px;
+    color: white; /* Make top text white */
+}
+
+.modal-body {
+    margin-bottom: 20px;
+    color: #e2e8f0; /* Light gray color for better contrast */
+    line-height: 1.6;
+    border: none; /* Ensure no border is applied */
+}
+
+.modal-footer {
+    display: flex;
+    justify-content: flex-end;
+    border-top: 1px solid #444;
+    padding-top: 10px;
+    border: none; /* Ensure no border is applied */
+}
+
+/* Specific colors for labels */
+.text-red-500 {
+    color: #f56565; /* Adjust red color */
+    text-shadow: none; /* Remove text shadow if any */
+    border: none; /* Ensure no border is applied */
+}
+
+.text-blue-500 {
+    color: #63b3ed; /* Adjust blue color */
+    text-shadow: none; /* Remove text shadow if any */
+    border: none; /* Ensure no border is applied */
+}
+
+.text-yellow-500 {
+    color: #ecc94b; /* Adjust yellow color */
+    text-shadow: none; /* Remove text shadow if any */
+    border: none; /* Ensure no border is applied */
+}
+
+.text-green-500 {
+    color: #48bb78; /* Adjust green color */
+    text-shadow: none; /* Remove text shadow if any */
+    border: none; /* Ensure no border is applied */
+}
+
+button.close-btn {
+    background: none;
+    border: none;
+    color: #e2e8f0;
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+
+button.close-btn:hover {
+    color: #f56565;
+}
+
+button.action-btn {
+    background-color: #f56565;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 8px 16px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+button.action-btn:hover {
+    background-color: #c53030;
+    transform: scale(1.05);
+}
+
+button.action-btn:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(245, 101, 101, 0.5);
+}
