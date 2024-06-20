@@ -8,9 +8,14 @@ const fs = require('fs');
 const app = express();
 const PORT = process.env.PORT || 5000;
 
-// Middleware to set security headers
 app.use(helmet());
 app.use(helmet.frameguard({ action: 'deny' }));
+
+// Set X-XSS-Protection header
+app.use((req, res, next) => {
+    res.setHeader('X-XSS-Protection', '1; mode=block');
+    next();
+});
 
 // Generate a secure nonce
 app.use((req, res, next) => {
@@ -42,6 +47,7 @@ app.use((req, res, next) => {
     res.header("Access-Control-Allow-Origin", "https://cdn.discordapp.com");
     res.header("Access-Control-Allow-Methods", "GET,HEAD,PUT,PATCH,POST,DELETE");
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, Authorization");
+    res.header("Vary", "Origin");
     next();
 });
 
