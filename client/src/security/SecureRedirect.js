@@ -14,24 +14,27 @@ const SecureRedirect = ({ url, children }) => {
         window.location.href = url;
     };
 
+    // Retrieve nonce from the meta tag
+    const nonce = document.querySelector('meta[name="csp-nonce"]').getAttribute('content');
+
     return (
         <>
-            <Button onClick={handleOpen}>
+            <Button onClick={handleOpen} sx={{ nonce }}>
                 {children}
             </Button>
             <Modal open={open} onClose={handleClose}>
-                <Box sx={{ p: 2, bgcolor: 'background.paper', borderRadius: 1, boxShadow: 24 }}>
+                <Box sx={{ p: 2, bgcolor: 'background.paper', borderRadius: 1, boxShadow: 24, nonce }}>
                     <Typography variant="h6" component="h2">
                         Redireccionamiento
                     </Typography>
-                    <Typography sx={{ mt: 2 }}>
+                    <Typography sx={{ mt: 2, nonce }}>
                         Estas a punto de salir de este sitio, desea continuar?
                     </Typography>
-                    <Box sx={{ mt: 2 }}>
-                        <Button variant="contained" color="primary" onClick={handleRedirect}>
+                    <Box sx={{ mt: 2, display: 'flex', justifyContent: 'space-between', nonce }}>
+                        <Button variant="contained" color="primary" onClick={handleRedirect} sx={{ nonce }}>
                             Si
                         </Button>
-                        <Button sx={{ ml: 1 }} variant="outlined" onClick={handleClose}>
+                        <Button sx={{ ml: 1, nonce }} variant="outlined" onClick={handleClose}>
                             No
                         </Button>
                     </Box>

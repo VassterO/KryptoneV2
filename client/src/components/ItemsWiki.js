@@ -6,7 +6,13 @@ import CloseIcon from '@mui/icons-material/Close';
 import StarBackground from './StarBackground';
 import Footer from './Footer';
 import useScreenAdapter from '../utils/ScreenAdapter';
+import createCache from '@emotion/cache';
+import { CacheProvider } from '@emotion/react';
 import '../styles/ItemsWiki.css';
+
+// Create Emotion cache with nonce
+const nonce = document.querySelector('meta[name="csp-nonce"]').getAttribute('content');
+const cache = createCache({ key: 'css', nonce, prepend: true });
 
 const items = [
     {
@@ -81,82 +87,84 @@ const ItemsWiki = () => {
     };
 
     return (
-        <div className="relative min-h-screen bg-gradient-to-b from-gray-900 via-gray-800 to-black text-white flex flex-col items-center justify-center py-8 px-4 md:px-8 lg:px-12">
-            <Helmet>
-                <title>Wiki | Kryptone Facilities</title>
-                <meta name="description" content="Explora nuestra wiki completa para aprender sobre los diversos objetos disponibles en el juego." />
-                <meta name="keywords" content="Kryptone Facilities, SCP, objetos, wiki, SCP Secret Laboratory" />
-            </Helmet>
-            <StarBackground />
-            <motion.div
-                className="relative z-10 text-center mb-6"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                exit={{ opacity: 0, y: 20 }}
-                transition={{ duration: 0.6, ease: [0.42, 0, 0.58, 1] }}
-            >
-                <h1 className="text-4xl font-bold mb-2">Wiki de Objetos</h1>
-                <p className="text-xl mb-2">
-                    Explora nuestra wiki completa para aprender sobre los diversos objetos disponibles en el juego.
-                </p>
-            </motion.div>
-            <motion.div
-                className="relative z-10 w-full max-w-4xl p-4 bg-gray-800 rounded-lg shadow-lg overflow-x-auto"
-                initial="hidden"
-                animate="visible"
-            >
-                <div className="centered-table">
-                    <table className="min-w-full table-auto border-collapse border border-gray-700">
-                        <thead>
-                        <tr className="bg-gray-700">
-                            <th className="px-4 py-2 border border-gray-600">Item</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        {items.map((item, index) => (
-                            <tr key={index} className="hover:bg-gray-600 transition duration-200 cursor-pointer" onClick={() => setSelectedItem(item)}>
-                                <td className="border px-4 py-2">{item.name}</td>
+        <CacheProvider value={cache}>
+            <div className="relative min-h-screen bg-gradient-to-b from-gray-900 via-gray-800 to-black text-white flex flex-col items-center justify-center py-8 px-4 md:px-8 lg:px-12">
+                <Helmet>
+                    <title>Wiki | Kryptone Facilities</title>
+                    <meta name="description" content="Explora nuestra wiki completa para aprender sobre los diversos objetos disponibles en el juego." />
+                    <meta name="keywords" content="Kryptone Facilities, SCP, objetos, wiki, SCP Secret Laboratory" />
+                </Helmet>
+                <StarBackground />
+                <motion.div
+                    className="relative z-10 text-center mb-6"
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0, y: 20 }}
+                    transition={{ duration: 0.6, ease: [0.42, 0, 0.58, 1] }}
+                >
+                    <h1 className="text-4xl font-bold mb-2">Wiki de Objetos</h1>
+                    <p className="text-xl mb-2">
+                        Explora nuestra wiki completa para aprender sobre los diversos objetos disponibles en el juego.
+                    </p>
+                </motion.div>
+                <motion.div
+                    className="relative z-10 w-full max-w-4xl p-4 bg-gray-800 rounded-lg shadow-lg overflow-x-auto"
+                    initial="hidden"
+                    animate="visible"
+                >
+                    <div className="centered-table">
+                        <table className="min-w-full table-auto border-collapse border border-gray-700">
+                            <thead>
+                            <tr className="bg-gray-700">
+                                <th className="px-4 py-2 border border-gray-600">Item</th>
                             </tr>
-                        ))}
-                        </tbody>
-                    </table>
-                </div>
-            </motion.div>
-            <AnimatePresence>
-                {selectedItem && (
-                    <Modal
-                        open={!!selectedItem}
-                        onClose={handleClose}
-                        className="modal-overlay"
-                    >
-                        <Box className={`modal-content ${isClosing ? 'modal-fade-out' : 'modal-fade-in'}`} onClick={handleBackdropClick}>
-                            <div className="modal-header">
-                                <Typography variant="h6" component="h2">{selectedItem.name}</Typography>
-                                <IconButton edge="end" color="inherit" onClick={handleClose} aria-label="close" className="close-btn">
-                                    <CloseIcon />
-                                </IconButton>
-                            </div>
-                            <div className="modal-body">
-                                <Typography component="p" className="no-border"><strong className="text-red-500">Descripción:</strong> {selectedItem.description}</Typography>
-                                <Typography component="p" className="no-border"><strong className="text-blue-500">Modelo:</strong> {selectedItem.model}</Typography>
-                                {selectedItem.effect && (
-                                    <Typography component="p" className="no-border"><strong className="text-yellow-500">Efecto:</strong> {selectedItem.effect}</Typography>
-                                )}
-                                {selectedItem.obtain && (
-                                    <Typography component="p" className="no-border"><strong className="text-green-500">Obtención:</strong> {selectedItem.obtain}</Typography>
-                                )}
-                            </div>
-                            <div className="modal-footer no-border">
-                                <button className="action-btn" onClick={handleClose}>
-                                    Cerrar
-                                </button>
-                            </div>
-                        </Box>
-                    </Modal>
-                )}
-            </AnimatePresence>
-            <Footer />
-        </div>
+                            </thead>
+                            <tbody>
+                            {items.map((item, index) => (
+                                <tr key={index} className="hover:bg-gray-600 transition duration-200 cursor-pointer" onClick={() => setSelectedItem(item)}>
+                                    <td className="border px-4 py-2">{item.name}</td>
+                                </tr>
+                            ))}
+                            </tbody>
+                        </table>
+                    </div>
+                </motion.div>
+                <AnimatePresence>
+                    {selectedItem && (
+                        <Modal
+                            open={!!selectedItem}
+                            onClose={handleClose}
+                            className="modal-overlay"
+                        >
+                            <Box className={`modal-content ${isClosing ? 'modal-fade-out' : 'modal-fade-in'}`} onClick={handleBackdropClick}>
+                                <div className="modal-header">
+                                    <Typography variant="h6" component="h2">{selectedItem.name}</Typography>
+                                    <IconButton edge="end" color="inherit" onClick={handleClose} aria-label="close" className="close-btn">
+                                        <CloseIcon />
+                                    </IconButton>
+                                </div>
+                                <div className="modal-body">
+                                    <Typography component="p" className="no-border"><strong className="text-red-500">Descripción:</strong> {selectedItem.description}</Typography>
+                                    <Typography component="p" className="no-border"><strong className="text-blue-500">Modelo:</strong> {selectedItem.model}</Typography>
+                                    {selectedItem.effect && (
+                                        <Typography component="p" className="no-border"><strong className="text-yellow-500">Efecto:</strong> {selectedItem.effect}</Typography>
+                                    )}
+                                    {selectedItem.obtain && (
+                                        <Typography component="p" className="no-border"><strong className="text-green-500">Obtención:</strong> {selectedItem.obtain}</Typography>
+                                    )}
+                                </div>
+                                <div className="modal-footer no-border">
+                                    <button className="action-btn" onClick={handleClose}>
+                                        Cerrar
+                                    </button>
+                                </div>
+                            </Box>
+                        </Modal>
+                    )}
+                </AnimatePresence>
+                <Footer />
+            </div>
+        </CacheProvider>
     );
 };
 

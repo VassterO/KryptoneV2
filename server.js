@@ -2,6 +2,8 @@ const express = require('express');
 const path = require('path');
 const helmet = require('helmet');
 const crypto = require('crypto');
+const { execSync } = require('child_process');
+const fs = require('fs');
 
 const app = express();
 const PORT = process.env.PORT || 5000;
@@ -16,7 +18,7 @@ app.use((req, res, next) => {
     next();
 });
 
-// Apply CSP using nonce
+// Apply CSP using nonce and whitelisted sources
 app.use((req, res, next) => {
     helmet.contentSecurityPolicy({
         directives: {
@@ -44,13 +46,33 @@ app.use((req, res, next) => {
 });
 
 // Serve static files from the React app
-app.use(express.static(path.join(__dirname, 'client/build')));
+app.use('/KryptoneV2', express.static(path.join(__dirname, 'client', 'build')));
 
-// The "catchall" handler: for any request that doesn't
-// match one above, send back the React index.html file.
+// The "catchall" handler: for any request that doesn't match one above, send back the React index.html file.
 app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname + '/client/build/index.html'));
+    const indexFile = path.join(__dirname, 'client', 'build', 'index.html');
+    fs.readFile(indexFile, 'utf8', (err, data) => {
+        if (err) {
+            console.error('Error reading index.html file:', err);
+            return res.status(500).send('Internal Server Error');
+        }
+        const nonce = res.locals.nonce;
+        const updatedData = data.replace('<meta name="csp-nonce" content="">', `<meta name="csp-nonce" content="${nonce}">`);
+        res.send(updatedData);
+    });
 });
+
+// Build the React app if it hasn't been built already
+const buildReactApp = () => {
+    console.log("Building the React application...");
+    execSync('npm run build', { stdio: 'inherit', cwd: path.join(__dirname, 'client') });
+};
+
+try {
+    buildReactApp();
+} catch (error) {
+    console.error("Error building the React application:", error);
+}
 
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);

@@ -1,15 +1,16 @@
 .rank-card {
     margin-bottom: 1rem;
     padding: 1rem;
-    background-color: rgba(0, 51, 102, 0.9); /* Blue-ish background color */
-    border-radius: 10px; /* Border radius */
-    box-shadow: 0 10px 20px rgba(0, 0, 102, 0.5); /* Blue-ish shadow */
-    transition: all 0.3s ease; /* Add smooth transition */
+    background-color: rgba(0, 51, 102, 0.9);
+    border-radius: 10px;
+    box-shadow: 0 10px 20px rgba(0, 0, 102, 0.5);
+    transition: all 0.3s ease;
+    overflow: hidden;
 }
 
 .rank-card:hover {
     transform: translateY(-10px); /* Hover effect to lift the card */
-    box-shadow: 0 20px 40px rgba(0, 0, 102, 0.7); /* Stronger blue-ish shadow on hover */
+    box-shadow: 0 20px 40px rgba(0, 0, 102, 0.7);
 }
 
 .rank-card button {
@@ -62,4 +63,67 @@ button.action-btn:hover {
 button.action-btn:focus {
     outline: none;
     box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.5);
+}
+
+/* Ensure the container adapts to different screen sizes */
+.rank-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    max-width: 800px; /* Adjust based on your design */
+    margin: 0 auto;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+/* Adjustments for different screen sizes */
+@media (max-width: 1024px) {
+    .rank-card h2 {
+        font-size: 1.25rem;
+    }
+    .rank-card img {
+        width: 5rem;
+        height: 5rem;
+    }
+    button.action-btn {
+        padding: 8px 16px;
+        font-size: 0.875rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .rank-card h2 {
+        font-size: 1rem;
+    }
+    .rank-card img {
+        width: 4rem;
+        height: 4rem;
+    }
+    button.action-btn {
+        padding: 6px 12px;
+        font-size: 0.75rem;
+    }
+    .rank-container {
+        padding: 10px;
+    }
+}
+
+/* Ensure the Patreon link stays within bounds */
+.patreon-link-container {
+    margin-top: 20px;
+    text-align: center;
+    width: 100%;
+    color: yellow; /* Match the card colors */
+    font-size: 1rem;
+}
+
+.patreon-link-container a {
+    color: yellow; /* Match the card colors */
+    text-decoration: none;
+}
+
+.patreon-link-container a:hover {
+    text-decoration: underline;
 }

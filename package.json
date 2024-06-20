@@ -7,15 +7,19 @@
     "client": "cd client && npm start",
     "server": "node server.js",
     "build": "cd client && npm install && npm run build",
-    "start": "npm run build && npm run server"
+    "start": "npm run build && npm run server",
+    "predeploy": "cd client && npm install && npm run build",
+    "deploy": "gh-pages -d client/build"
   },
   "dependencies": {
+    "@emotion/cache": "^11.11.0",
     "aos": "^2.3.4",
     "concurrently": "^7.0.0",
     "dompurify": "^3.1.5",
     "dotenv": "^16.4.5",
     "express": "^4.19.2",
     "framer-motion": "^11.2.6",
+    "gh-pages": "^6.1.1",
     "helmet": "^7.1.0",
     "prop-types": "^15.8.1",
     "react-helmet": "^6.1.0",
