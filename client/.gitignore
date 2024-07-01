@@ -19,3 +19,8 @@ build/
 # OS files
 .DS_Store
 Thumbs.db
+
+# Extra
+
+logo
+reportWebVitals.js
