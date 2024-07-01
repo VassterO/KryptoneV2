@@ -7,6 +7,7 @@ const CleanCSS = require('clean-css');
 const jsDirectory = join(__dirname, 'build', 'static', 'js');
 const cssDirectory = join(__dirname, 'build', 'static', 'css');
 
+// Function to minify a JavaScript file
 async function minifyJsFile(filePath) {
     try {
         const fileContents = readFileSync(filePath, 'utf8');
@@ -28,6 +29,7 @@ async function minifyJsFile(filePath) {
     }
 }
 
+// Function to minify a CSS file
 function minifyCssFile(filePath) {
     try {
         const fileContents = readFileSync(filePath, 'utf8');
@@ -44,6 +46,7 @@ function minifyCssFile(filePath) {
     }
 }
 
+// Function to minify all JS and CSS files in the specified directories
 function minifyFiles() {
     try {
         // Minify JS files
@@ -66,4 +69,5 @@ function minifyFiles() {
     }
 }
 
+// Start the minification process
 minifyFiles();

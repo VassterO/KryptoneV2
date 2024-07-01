@@ -5,6 +5,7 @@ import Footer from './Footer';
 import '../styles/Home.css';
 
 const Home = () => {
+    // Use useEffect to add and remove a class that hides the scrollbar when this component is mounted and unmounted
     useEffect(() => {
         document.body.classList.add('hide-scrollbar');
         return () => {
@@ -14,14 +15,20 @@ const Home = () => {
 
     return (
         <>
+            {/* Helmet allows us to set the HTML head elements like title and meta tags */}
             <Helmet>
                 <title>Home | Kryptone Facilities</title>
                 <meta name="description" content="Bienvenido a la página oficial de Kryptone Facilities" />
                 <meta name="keywords" content="Kryptone Facilities, SCP Secret Laboratory, Servidor SCP, Comunidad SCP" />
                 <meta name="author" content="Kryptone Facilities" />
             </Helmet>
+
+            {/* Main container for the home page */}
             <div className="home-container relative min-h-screen bg-gradient-to-b from-gray-900 via-gray-800 to-black text-white flex flex-col items-center justify-center py-8 px-4 md:px-8 lg:px-12">
+                {/* Star background animation component */}
                 <StarBackground />
+
+                {/* Content of the home page */}
                 <div className="home-content relative z-10 p-8 w-full md:w-8/12 lg:w-6/12 text-center flex flex-col items-center justify-center">
                     <h1 className="home-title text-4xl font-bold mb-4">
                         Bienvenido a la página oficial de Kryptone Facilities
@@ -34,6 +41,7 @@ const Home = () => {
                     </p>
                 </div>
             </div>
+            {/* Footer component */}
             <Footer />
         </>
     );

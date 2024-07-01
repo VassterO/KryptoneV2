@@ -14,15 +14,17 @@ import OurStaff from './components/OurStaff';
 import './index.css';
 import './custom-scrollbar.css';
 
-// Get the nonce from the meta tag
+// Get the nonce from the meta tag for Content Security Policy (CSP)
 const nonce = document.querySelector('meta[name="csp-nonce"]').getAttribute('content');
 
+// Create a cache for emotion styling with the nonce
 const cache = createCache({
     key: 'custom',
     nonce: nonce,
     prepend: true,
 });
 
+// A wrapper for page components with animation effects and optional scroll
 const PageWrapper = ({ children, noScroll }) => (
     <motion.div
         initial={{ opacity: 0, y: 20 }}
@@ -35,6 +37,7 @@ const PageWrapper = ({ children, noScroll }) => (
     </motion.div>
 );
 
+// Main App component
 const App = () => {
     const location = useLocation();
 
@@ -61,6 +64,7 @@ const App = () => {
     );
 };
 
+// Wrapper component to provide routing
 const AppWrapper = () => (
     <Router>
         <App />

@@ -9,36 +9,56 @@ import Footer from './Footer';
 import SecureRedirect from '../security/SecureRedirect';
 import '../styles/Ranks.css';
 
+// List of available ranks with details
 const ranks = [
     {
         name: 'Vanguardia',
         image: vanguardia,
         description: 'El rango Vanguardia incluye acceso a funciones básicas de donadores.',
         price: '3.25€ / mes',
-        benefits: ['Chat de donadores', 'Auras del color de tu role', 'Emotes'],
-        patreonLink: 'https://www.patreon.com/checkout/KryptoneFacilities?rid=22992460'
+        benefits: [
+            '5 Eventos semanales',
+            'Chat de donadores',
+            'Auras del color de tu rango',
+            'Emotes',
+        ],
+        patreonLink: '', // Add actual link if available
     },
     {
         name: 'Arcano',
         image: arcano,
         description: 'El rango Arcano incluye todas las ventajas de Vanguardia, además de gorros',
         price: '4.33€ / mes',
-        benefits: ['Chat de donadores','Auras del color de tu role','Emotes', 'Gorros'],
-        patreonLink: 'https://www.patreon.com/checkout/KryptoneFacilities?rid=22992506'
+        benefits: [
+            '8 Eventos semanales',
+            'Chat de donadores',
+            'Auras del color de tu rango',
+            'Emotes',
+            'Gorros',
+        ],
+        patreonLink: '', // Add actual link if available
     },
     {
         name: 'Investigador',
         image: investigador,
         description: 'El rango Investigador brinda acceso a todas las ventajas de los rangos anteriores, además de mascotas.',
         price: '6.50€ / mes',
-        benefits: ['Chat de donadores', 'Auras del color', 'Emotes', 'Gorros', 'Mascotas'],
-        patreonLink: 'https://www.patreon.com/checkout/KryptoneFacilities?rid=22992506'
+        benefits: [
+            '12 Eventos semanales',
+            'Chat de donadores',
+            'Auras del color de tu rango',
+            'Emotes',
+            'Gorros',
+            'Mascotas',
+        ],
+        patreonLink: '', // Add actual link if available
     },
 ];
 
 const Shop = () => {
-    const [expandedIndex, setExpandedIndex] = useState(null);
+    const [expandedIndex, setExpandedIndex] = useState(null); // State to manage expanded rank details
 
+    // Function to handle expanding/collapsing rank details
     const handleExpand = (index) => {
         setExpandedIndex(expandedIndex === index ? null : index);
     };
@@ -111,7 +131,7 @@ const Shop = () => {
                     <p>Pago mensual a través de <a href="https://patreon.com/kryptonefacilities" className="text-blue-500 hover:underline">Patreon</a></p>
                 </div>
             </div>
-            <Footer />
+            <Footer/>
         </>
     );
 };

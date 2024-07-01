@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import '../styles/StarBackground.css';
 
+// Function to detect device type
 const getDeviceType = () => {
     const ua = navigator.userAgent;
     if (/tablet|ipad|playbook|silk/i.test(ua) && !/mobi|android/i.test(ua)) {
@@ -12,6 +13,7 @@ const getDeviceType = () => {
     return 'desktop';
 };
 
+// Function to generate a star with random properties
 const generateStar = (index, sizeFactor) => {
     const speed = 4 + Math.random() * 2;
     const size = (Math.random() * 2 + 3) * sizeFactor;

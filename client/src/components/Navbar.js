@@ -5,11 +5,13 @@ import logo from '../assets/logo.png';
 import '../styles/Navbar.css';
 
 const Navbar = () => {
-    const [isOpen, setIsOpen] = useState(false);
-    const location = useLocation();
+    const [isOpen, setIsOpen] = useState(false); // State to manage the open/close state of the mobile menu
+    const location = useLocation(); // Hook to get the current location
 
+    // Function to toggle the mobile menu
     const toggleMenu = () => setIsOpen(!isOpen);
 
+    // Function to close the menu and prevent default action if already on the target path
     const closeMenu = (e, path) => {
         if (location.pathname === path) e.preventDefault();
         else setIsOpen(false);

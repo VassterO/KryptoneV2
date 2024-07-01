@@ -10,10 +10,11 @@ import createCache from '@emotion/cache';
 import { CacheProvider } from '@emotion/react';
 import '../styles/ItemsWiki.css';
 
-// Create Emotion cache with nonce
+// Create Emotion cache with nonce for security
 const nonce = document.querySelector('meta[name="csp-nonce"]').getAttribute('content');
 const cache = createCache({ key: 'css', nonce, prepend: true });
 
+// List of items to display in the wiki
 const items = [
     {
         name: 'Pistola Tranquilizadora',
@@ -61,19 +62,28 @@ const items = [
         model: 'Gramofono',
         obtain: 'Se puede obtener en 914',
     },
+    {
+        name: 'Flamingo Tape Player',
+        description: 'Permite reemplazar a los espectadores con flamencos',
+        effect: 'Reemplaza a los espectadores con flamencos.',
+        model: 'Gramofono',
+        obtain: 'Se puede obtener en 914 y spawnea',
+    },
 ];
 
 const ItemsWiki = () => {
-    const [selectedItem, setSelectedItem] = useState(null);
-    const [isClosing, setIsClosing] = useState(false);
+    const [selectedItem, setSelectedItem] = useState(null); // State to manage selected item
+    const [isClosing, setIsClosing] = useState(false); // State to manage modal closing animation
 
-    useScreenAdapter();
+    useScreenAdapter(); // Custom hook for screen adaptation
 
+    // Add and remove a class to hide the scrollbar when this component is mounted and unmounted
     useEffect(() => {
         document.body.classList.add('hide-scrollbar');
         return () => document.body.classList.remove('hide-scrollbar');
     }, []);
 
+    // Handle closing of the modal with animation
     const handleClose = () => {
         setIsClosing(true);
         setTimeout(() => {
@@ -82,6 +92,7 @@ const ItemsWiki = () => {
         }, 300);
     };
 
+    // Handle clicking on the backdrop to close the modal
     const handleBackdropClick = (event) => {
         if (event.target === event.currentTarget) handleClose();
     };

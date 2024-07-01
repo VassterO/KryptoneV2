@@ -5,16 +5,16 @@ import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 
 const SecureRedirect = ({ url, children }) => {
-    const [open, setOpen] = useState(false);
+    const [open, setOpen] = useState(false); // State to manage modal open/close
 
-    const handleOpen = () => setOpen(true);
-    const handleClose = () => setOpen(false);
+    const handleOpen = () => setOpen(true); // Function to open modal
+    const handleClose = () => setOpen(false); // Function to close modal
 
     const handleRedirect = () => {
-        window.location.href = url;
+        window.location.href = url; // Redirect to the specified URL
     };
 
-    // Retrieve nonce from the meta tag
+    // Retrieve nonce from the meta tag for CSP compliance
     const nonce = document.querySelector('meta[name="csp-nonce"]').getAttribute('content');
 
     return (
@@ -28,11 +28,11 @@ const SecureRedirect = ({ url, children }) => {
                         Redireccionamiento
                     </Typography>
                     <Typography sx={{ mt: 2, nonce }}>
-                        Estas a punto de salir de este sitio, desea continuar?
+                        Estás a punto de salir de este sitio, ¿desea continuar?
                     </Typography>
                     <Box sx={{ mt: 2, display: 'flex', justifyContent: 'space-between', nonce }}>
                         <Button variant="contained" color="primary" onClick={handleRedirect} sx={{ nonce }}>
-                            Si
+                            Sí
                         </Button>
                         <Button sx={{ ml: 1, nonce }} variant="outlined" onClick={handleClose}>
                             No

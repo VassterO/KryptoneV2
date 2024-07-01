@@ -6,12 +6,15 @@ import '../styles/Profile.css';
 
 const Profile = () => {
     useEffect(() => {
+        // Check if the user is on a mobile device
         const isMobileDevice = /Mobi|Android/i.test(navigator.userAgent);
 
+        // If not on a mobile device, hide the scrollbar
         if (!isMobileDevice) {
             document.body.classList.add('hide-scrollbar');
         }
 
+        // Cleanup function to remove the hide-scrollbar class when the component unmounts
         return () => {
             if (!isMobileDevice) {
                 document.body.classList.remove('hide-scrollbar');
@@ -34,6 +37,7 @@ const Profile = () => {
             <div className="absolute w-full h-full bg-gray-900"></div>
             <StarBackground />
             <div className="relative z-20">
+                {/* Spinning loader animation */}
                 <div className="animate-spin-slow rounded-full h-16 w-16 border-t-4 border-b-4 border-blue-500"></div>
             </div>
         </motion.div>
