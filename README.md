@@ -8,7 +8,6 @@ This project is licensed under the GNU General Public License v3.0 (GPLv3) - see
 
 If you use or modify this project, please provide appropriate credit, including a link to the original repository.
 
-
 # Kryptone Facilities cierra sus puertas y he decidido hacer la pagina publica.
 
 # Sitio creado con React y Node.js
@@ -16,3 +15,6 @@ If you use or modify this project, please provide appropriate credit, including 
 > Recomendadas
 > Node server.js | npm run server
 > Node run deploy | Si tienes Github pages, hara deploy a la branch.
+
+# Atencion
+> La pagina puede contar con varias vulnerabilidades importantes (Como CSP y clickjacking, la cuales fueron arregladas en una version privada)
