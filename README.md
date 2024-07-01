@@ -1,10 +1,1 @@
-# [Private REPO] Property of VassterO
-## Distribution/Leaks of those files are prohibited
-### Welcome to the Kryptone Website V2 Repository
-**Currently Working on**
-
-
-
-** TODO **
-
-> Serving with Bun.sh
+# Kryptone Facilities cierra sus puertas y hago este projecto publico, aun asi, esta pagina no se debe copiar al maximo. No incluye su ultima actualizacion.
