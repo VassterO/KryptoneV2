@@ -1,3 +1,11 @@
+## Contenido
+
+- Instalación
+- Uso
+- Características
+- Licencia
+- Atribución
+
 ## License
 
 This project is licensed under the GNU General Public License v3.0 (GPLv3) - see the [LICENSE](LICENSE) file for details.
@@ -14,14 +22,6 @@ If you use or modify this project, please provide appropriate credit, including 
 
 Kryptone Facilities es un proyecto desarrollado con React y Node.js para gestionar y mostrar información sobre un servidor de SCP: Secret Laboratory. Aunque el proyecto ya no está activo, el código se ha hecho público para que cualquiera pueda verlo y utilizarlo.
 
-## Contenido
-
-- Instalación
-- Uso
-- Características
-- Seguridad
-- Licencia
-- Atribución
 
 ## Instalación
 
